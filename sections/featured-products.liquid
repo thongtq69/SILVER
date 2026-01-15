@@ -63,15 +63,73 @@
           </div>
         {% endfor %}
       {% else %}
-        {% for i in (1..section.settings.products_to_show) %}
-          <div class="product-card product-card--placeholder">
+        {% for i in (1..8) %}
+          {% capture current_image %}product-{{ i }}-swavi.webp{% endcapture %}
+          {% case i %}
+            {% when 1 %}
+              {% assign current_title = "Swarovski Dazzling Swan Necklace 5469989" %}
+              {% assign current_price = 13900 %}
+              {% assign current_compare = 17500 %}
+            {% when 2 %}
+              {% assign current_title = "Swarovski Dancing Swan Necklace 5514421" %}
+              {% assign current_price = 18900 %}
+              {% assign current_compare = 24900 %}
+            {% when 3 %}
+              {% assign current_title = "Swarovski Dazzling Swan Necklace 5563464" %}
+              {% assign current_price = 14500 %}
+              {% assign current_compare = 17500 %}
+            {% when 4 %}
+              {% assign current_title = "Swarovski Dancing Swan Necklace 5533397" %}
+              {% assign current_price = 17500 %}
+              {% assign current_compare = 24900 %}
+            {% when 5 %}
+              {% assign current_title = "Swarovski Dancing Swan Necklace 5614123" %}
+              {% assign current_price = 19900 %}
+              {% assign current_compare = 24900 %}
+            {% when 6 %}
+              {% assign current_title = "Swarovski Swan Pendant 5732414" %}
+              {% assign current_price = 12900 %}
+              {% assign current_compare = 15900 %}
+            {% when 7 %}
+              {% assign current_title = "Swarovski Swan Pendant 5732413" %}
+              {% assign current_price = 12900 %}
+              {% assign current_compare = 15900 %}
+            {% when 8 %}
+              {% assign current_title = "Swarovski Swan Pendant 5723389" %}
+              {% assign current_price = 13900 %}
+              {% assign current_compare = 17900 %}
+          {% endcase %}
+
+          <div class="product-card">
             <div class="product-card-image">
-              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% if section.settings.show_sale_badge and current_compare > current_price %}
+                {% assign saved_amount = current_compare | minus: current_price %}
+                {% assign saved_percentage = saved_amount | times: 100.0 | divided_by: current_compare | round %}
+                <span class="product-badge sale-badge">-{{ saved_percentage }}%</span>
+              {% endif %}
+              
+              <a href="#" class="product-card-link">
+                <img 
+                  src="{{ current_image | asset_url }}" 
+                  alt="{{ current_title }}"
+                  class="product-img"
+                  loading="lazy"
+                  width="400"
+                  height="400"
+                >
+              </a>
             </div>
             <div class="product-card-info">
-              <h3 class="product-card-title">Product Title</h3>
+              <h3 class="product-card-title">
+                <a href="#">{{ current_title }}</a>
+              </h3>
               <div class="product-card-price">
-                <span class="price-current">{{ 1000000 | money }}</span>
+                {% if current_compare > current_price %}
+                  <span class="price-original">{{ current_compare | money }}</span>
+                  <span class="price-current price-sale">{{ current_price | money }}</span>
+                {% else %}
+                  <span class="price-current">{{ current_price | money }}</span>
+                {% endif %}
               </div>
             </div>
           </div>
