@@ -1,0 +1,100 @@
+<section class="intro-text-section" data-section-id="{{ section.id }}" style="background-color: {{ section.settings.background_color }};">
+  <div class="container">
+    <div class="intro-content" style="text-align: {{ section.settings.text_alignment }};">
+      {% if section.settings.image %}
+        <div class="intro-image">
+          <img 
+            src="{{ section.settings.image | image_url: width: 300 }}" 
+            alt="{{ section.settings.heading }}"
+            class="intro-img"
+            loading="lazy"
+          >
+        </div>
+      {% endif %}
+      
+      {% if section.settings.heading != blank %}
+        <h2 class="intro-heading" style="color: {{ section.settings.text_color }};">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+      
+      {% if section.settings.text != blank %}
+        <div class="intro-description" style="color: {{ section.settings.text_color }};">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
+      
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn btn-secondary">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Intro Text",
+  "tag": "section",
+  "class": "intro-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (optional)"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hiện thực giấc mơ của bạn"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>Thành lập từ năm 1985 bởi nhà sáng lập Daniel Avalane, chúng tôi đã trở thành thương hiệu trang sức dẫn đầu thế giới - trong đó có Việt Nam, với các sản phẩm pha lê tinh tế hiện thực giấc mơ của bạn.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F2EFE8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Intro Text",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

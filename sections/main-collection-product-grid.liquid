@@ -1,0 +1,100 @@
+<div class="collection-product-grid" data-section-id="{{ section.id }}">
+  <div class="container">
+    <!-- Filters & Sorting -->
+    {% if section.settings.enable_filtering or section.settings.enable_sorting %}
+      <div class="collection-toolbar">
+        {% if section.settings.enable_filtering %}
+          <div class="collection-filters">
+            {{ collection.filters | filter_form }}
+          </div>
+        {% endif %}
+        
+        {% if section.settings.enable_sorting %}
+          <div class="collection-sort">
+            <label for="SortBy">Sắp xếp:</label>
+            <select id="SortBy" class="sort-select" onchange="window.location.href = this.value">
+              {% for option in collection.sort_options %}
+                <option value="{{ option.url }}" {% if option.value == collection.sort_by %}selected{% endif %}>
+                  {{ option.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endif %}
+        
+        <div class="collection-count">
+          {{ collection.products_count }} sản phẩm
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Products Grid -->
+    <div class="products-grid products-grid--{{ section.settings.columns_desktop }}">
+      {% paginate collection.products by section.settings.products_per_page %}
+        {% for product in collection.products %}
+          {% render 'product-card', product: product, show_sale_badge: true %}
+        {% else %}
+          <p class="no-products">Không có sản phẩm nào trong danh mục này.</p>
+        {% endfor %}
+      
+        <!-- Pagination -->
+        {% if paginate.pages > 1 %}
+          <div class="pagination">
+            {{ paginate | default_pagination }}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "class": "collection-product-grid-section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 36,
+      "step": 4,
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Desktop columns",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Mobile columns",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "label": "Enable filtering",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "label": "Enable sorting",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

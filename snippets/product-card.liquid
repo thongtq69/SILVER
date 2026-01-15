@@ -1,0 +1,78 @@
+<article class="product-card" data-product-id="{{ product.id }}">
+  <a href="{{ product.url }}" class="product-card-link">
+    <div class="product-card-image">
+      {% if product.featured_image %}
+        <img 
+          src="{{ product.featured_image | image_url: width: 400 }}" 
+          alt="{{ product.featured_image.alt | escape | default: product.title }}"
+          class="product-img"
+          loading="lazy"
+          width="400"
+          height="400"
+        >
+        {% if product.images[1] and show_second_image %}
+          <img 
+            src="{{ product.images[1] | image_url: width: 400 }}" 
+            alt="{{ product.images[1].alt | escape | default: product.title }}"
+            class="product-img product-img--hover"
+            loading="lazy"
+            width="400"
+            height="400"
+          >
+        {% endif %}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      
+      {% if show_sale_badge and product.compare_at_price > product.price %}
+        {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+        <span class="product-badge product-badge--sale">-{{ discount }}%</span>
+      {% endif %}
+      
+      {% unless product.available %}
+        <span class="product-badge product-badge--sold-out">Hết hàng</span>
+      {% endunless %}
+    </div>
+    
+    <div class="product-card-info">
+      <h3 class="product-card-title">{{ product.title }}</h3>
+      
+      {% if product.vendor and show_vendor %}
+        <p class="product-card-vendor">{{ product.vendor }}</p>
+      {% endif %}
+      
+      <div class="product-card-price">
+        {% if product.compare_at_price > product.price %}
+          <span class="price-original">{{ product.compare_at_price | money }}</span>
+          <span class="price-sale">{{ product.price | money }}</span>
+        {% else %}
+          <span class="price-current">{{ product.price | money }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+  
+  {% if show_quick_add %}
+    <div class="product-card-actions">
+      {% if product.available %}
+        {% if product.variants.size == 1 %}
+          <form action="/cart/add" method="post" class="product-form">
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+            <button type="submit" class="btn btn-add-to-cart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                <path d="M3 6h18"></path>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+              <span>Thêm vào giỏ</span>
+            </button>
+          </form>
+        {% else %}
+          <a href="{{ product.url }}" class="btn btn-view-options">Xem tùy chọn</a>
+        {% endif %}
+      {% else %}
+        <button class="btn btn-sold-out" disabled>Hết hàng</button>
+      {% endif %}
+    </div>
+  {% endif %}
+</article>

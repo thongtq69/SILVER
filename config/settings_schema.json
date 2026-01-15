@@ -1,0 +1,192 @@
+[
+    {
+        "name": "theme_info",
+        "theme_name": "Avalane & Co",
+        "theme_version": "1.0.0",
+        "theme_author": "Avalane Team",
+        "theme_documentation_url": "https://github.com/thongtq69/Avalane_Co",
+        "theme_support_url": "https://github.com/thongtq69/Avalane_Co/issues"
+    },
+    {
+        "name": "Colors",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Primary Colors"
+            },
+            {
+                "type": "color",
+                "id": "color_primary",
+                "label": "Primary color",
+                "default": "#000000"
+            },
+            {
+                "type": "color",
+                "id": "color_secondary",
+                "label": "Secondary color",
+                "default": "#F2EFE8"
+            },
+            {
+                "type": "color",
+                "id": "color_accent",
+                "label": "Accent color (Sale)",
+                "default": "#D0021B"
+            },
+            {
+                "type": "color",
+                "id": "color_background",
+                "label": "Background color",
+                "default": "#FFFFFF"
+            },
+            {
+                "type": "color",
+                "id": "color_text",
+                "label": "Text color",
+                "default": "#000000"
+            },
+            {
+                "type": "color",
+                "id": "color_footer_bg",
+                "label": "Footer background",
+                "default": "#000000"
+            },
+            {
+                "type": "color",
+                "id": "color_footer_text",
+                "label": "Footer text color",
+                "default": "#FFFFFF"
+            }
+        ]
+    },
+    {
+        "name": "Typography",
+        "settings": [
+            {
+                "type": "font_picker",
+                "id": "type_header_font",
+                "label": "Heading font",
+                "default": "montserrat_n7"
+            },
+            {
+                "type": "font_picker",
+                "id": "type_body_font",
+                "label": "Body font",
+                "default": "montserrat_n4"
+            },
+            {
+                "type": "range",
+                "id": "type_base_size",
+                "label": "Base font size",
+                "min": 12,
+                "max": 20,
+                "step": 1,
+                "unit": "px",
+                "default": 16
+            }
+        ]
+    },
+    {
+        "name": "Logo",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "logo",
+                "label": "Logo image"
+            },
+            {
+                "type": "range",
+                "id": "logo_max_width",
+                "label": "Logo max width",
+                "min": 50,
+                "max": 300,
+                "step": 10,
+                "unit": "px",
+                "default": 150
+            },
+            {
+                "type": "image_picker",
+                "id": "favicon",
+                "label": "Favicon"
+            }
+        ]
+    },
+    {
+        "name": "Social Media",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Social links"
+            },
+            {
+                "type": "text",
+                "id": "social_facebook",
+                "label": "Facebook URL"
+            },
+            {
+                "type": "text",
+                "id": "social_instagram",
+                "label": "Instagram URL"
+            },
+            {
+                "type": "text",
+                "id": "social_tiktok",
+                "label": "TikTok URL"
+            },
+            {
+                "type": "text",
+                "id": "social_youtube",
+                "label": "YouTube URL"
+            },
+            {
+                "type": "header",
+                "content": "Contact"
+            },
+            {
+                "type": "text",
+                "id": "contact_phone",
+                "label": "Phone number"
+            },
+            {
+                "type": "text",
+                "id": "contact_email",
+                "label": "Email"
+            },
+            {
+                "type": "text",
+                "id": "contact_whatsapp",
+                "label": "WhatsApp"
+            },
+            {
+                "type": "text",
+                "id": "contact_viber",
+                "label": "Viber"
+            },
+            {
+                "type": "text",
+                "id": "contact_messenger",
+                "label": "Messenger URL"
+            }
+        ]
+    },
+    {
+        "name": "Cart",
+        "settings": [
+            {
+                "type": "select",
+                "id": "cart_type",
+                "label": "Cart type",
+                "options": [
+                    {
+                        "value": "drawer",
+                        "label": "Drawer"
+                    },
+                    {
+                        "value": "page",
+                        "label": "Page"
+                    }
+                ],
+                "default": "drawer"
+            }
+        ]
+    }
+]

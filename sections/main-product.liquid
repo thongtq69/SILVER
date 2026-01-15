@@ -1,0 +1,149 @@
+<div class="product-page" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="product-layout">
+      <!-- Product Gallery -->
+      <div class="product-gallery">
+        <div class="product-main-image">
+          {% if product.featured_image %}
+            <img 
+              src="{{ product.featured_image | image_url: width: 800 }}" 
+              alt="{{ product.featured_image.alt | escape | default: product.title }}"
+              class="main-img"
+              id="ProductMainImage"
+            >
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+        
+        {% if product.images.size > 1 %}
+          <div class="product-thumbnails">
+            {% for image in product.images %}
+              <button 
+                class="thumbnail-btn {% if forloop.first %}active{% endif %}"
+                data-image="{{ image | image_url: width: 800 }}"
+                aria-label="View image {{ forloop.index }}"
+              >
+                <img 
+                  src="{{ image | image_url: width: 100 }}" 
+                  alt="{{ image.alt | escape }}"
+                  loading="lazy"
+                >
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        {% if product.vendor %}
+          <p class="product-vendor">{{ product.vendor }}</p>
+        {% endif %}
+        
+        <h1 class="product-title">{{ product.title }}</h1>
+        
+        <div class="product-price">
+          {% if product.compare_at_price > product.price %}
+            <span class="price-original">{{ product.compare_at_price | money }}</span>
+            <span class="price-sale">{{ product.price | money }}</span>
+            {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+            <span class="price-badge">-{{ discount }}%</span>
+          {% else %}
+            <span class="price-current">{{ product.price | money }}</span>
+          {% endif %}
+        </div>
+
+        <!-- Product Form -->
+        {% form 'product', product, id: 'ProductForm', class: 'product-form' %}
+          {% unless product.has_only_default_variant %}
+            <div class="product-variants">
+              {% for option in product.options_with_values %}
+                <div class="variant-selector">
+                  <label for="Option-{{ option.name | handleize }}">{{ option.name }}</label>
+                  <select 
+                    id="Option-{{ option.name | handleize }}" 
+                    name="options[{{ option.name }}]"
+                    class="variant-select"
+                  >
+                    {% for value in option.values %}
+                      <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>
+                        {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+            </div>
+          {% endunless %}
+
+          <select name="id" id="ProductSelect" class="visually-hidden">
+            {% for variant in product.variants %}
+              <option 
+                value="{{ variant.id }}" 
+                {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+                {% unless variant.available %}disabled{% endunless %}
+              >
+                {{ variant.title }} - {{ variant.price | money }}
+              </option>
+            {% endfor %}
+          </select>
+
+          <div class="product-quantity">
+            <label for="Quantity">Số lượng</label>
+            <div class="quantity-selector">
+              <button type="button" class="quantity-btn minus" aria-label="Decrease quantity">-</button>
+              <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-input">
+              <button type="button" class="quantity-btn plus" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            class="btn btn-primary btn-add-to-cart"
+            {% unless product.available %}disabled{% endunless %}
+          >
+            {% if product.available %}
+              <span>Thêm vào giỏ hàng</span>
+            {% else %}
+              <span>Hết hàng</span>
+            {% endif %}
+          </button>
+
+          <button type="button" class="btn btn-secondary btn-buy-now">
+            Mua ngay
+          </button>
+        {% endform %}
+
+        <!-- Product Description -->
+        {% if product.description != blank %}
+          <div class="product-description">
+            <h3>Mô tả sản phẩm</h3>
+            {{ product.description }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Page",
+  "class": "product-page-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share",
+      "label": "Show share buttons",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

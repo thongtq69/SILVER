@@ -1,0 +1,38 @@
+{% comment %}
+  Meta tags snippet for SEO and social sharing
+{% endcomment %}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:type" content="{% if template.name == 'product' %}product{% elsif template.name == 'article' %}article{% else %}website{% endif %}">
+<meta property="og:description" content="{{ page_description | default: shop.description | strip_html | truncate: 200 }}">
+
+{% if template.name == 'product' %}
+  <meta property="og:price:amount" content="{{ product.price | money_without_currency }}">
+  <meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
+  {% if product.featured_image %}
+    <meta property="og:image" content="http:{{ product.featured_image | image_url: width: 1200 }}">
+    <meta property="og:image:secure_url" content="https:{{ product.featured_image | image_url: width: 1200 }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+  {% endif %}
+{% elsif template.name == 'collection' %}
+  {% if collection.image %}
+    <meta property="og:image" content="http:{{ collection.image | image_url: width: 1200 }}">
+    <meta property="og:image:secure_url" content="https:{{ collection.image | image_url: width: 1200 }}">
+  {% endif %}
+{% elsif template.name == 'article' %}
+  {% if article.image %}
+    <meta property="og:image" content="http:{{ article.image | image_url: width: 1200 }}">
+    <meta property="og:image:secure_url" content="https:{{ article.image | image_url: width: 1200 }}">
+  {% endif %}
+{% endif %}
+
+{% if settings.social_facebook != blank %}
+  <meta property="fb:app_id" content="{{ settings.social_facebook | split: '/' | last }}">
+{% endif %}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title }}">
+<meta name="twitter:description" content="{{ page_description | default: shop.description | strip_html | truncate: 200 }}">

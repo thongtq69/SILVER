@@ -1,0 +1,21 @@
+{
+    "sections": {
+        "main": {
+            "type": "main-product",
+            "settings": {}
+        },
+        "related_products": {
+            "type": "featured-products",
+            "settings": {
+                "heading": "Sản phẩm liên quan",
+                "products_to_show": 4,
+                "columns": "4",
+                "show_sale_badge": true
+            }
+        }
+    },
+    "order": [
+        "main",
+        "related_products"
+    ]
+}

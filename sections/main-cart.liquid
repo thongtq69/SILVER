@@ -1,0 +1,134 @@
+<div class="cart-page" data-section-id="{{ section.id }}">
+  <div class="container">
+    <h1 class="cart-title">Giỏ hàng</h1>
+    
+    {% if cart.item_count > 0 %}
+      <form action="{{ routes.cart_url }}" method="post" id="CartForm" class="cart-form">
+        <div class="cart-items">
+          {% for item in cart.items %}
+            <div class="cart-item" data-line-item="{{ forloop.index }}">
+              <div class="cart-item-image">
+                <a href="{{ item.url }}">
+                  {% if item.image %}
+                    <img 
+                      src="{{ item.image | image_url: width: 150 }}" 
+                      alt="{{ item.title }}"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                </a>
+              </div>
+              
+              <div class="cart-item-details">
+                <h3 class="cart-item-title">
+                  <a href="{{ item.url }}">{{ item.product.title }}</a>
+                </h3>
+                
+                {% unless item.variant.title == 'Default Title' %}
+                  <p class="cart-item-variant">{{ item.variant.title }}</p>
+                {% endunless %}
+                
+                <div class="cart-item-price">
+                  {% if item.original_price > item.final_price %}
+                    <span class="price-original">{{ item.original_price | money }}</span>
+                  {% endif %}
+                  <span class="price-current">{{ item.final_price | money }}</span>
+                </div>
+              </div>
+              
+              <div class="cart-item-quantity">
+                <div class="quantity-selector">
+                  <button 
+                    type="button" 
+                    class="quantity-btn minus"
+                    data-action="decrease"
+                    aria-label="Decrease quantity"
+                  >-</button>
+                  <input 
+                    type="number" 
+                    name="updates[]" 
+                    value="{{ item.quantity }}" 
+                    min="0"
+                    class="quantity-input"
+                    aria-label="Quantity"
+                  >
+                  <button 
+                    type="button" 
+                    class="quantity-btn plus"
+                    data-action="increase"
+                    aria-label="Increase quantity"
+                  >+</button>
+                </div>
+              </div>
+              
+              <div class="cart-item-total">
+                {{ item.final_line_price | money }}
+              </div>
+              
+              <button 
+                type="button" 
+                class="cart-item-remove"
+                data-line="{{ forloop.index }}"
+                aria-label="Remove item"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 6h18"></path>
+                  <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                  <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                </svg>
+              </button>
+            </div>
+          {% endfor %}
+        </div>
+        
+        <div class="cart-footer">
+          <div class="cart-notes">
+            <label for="CartNote">Ghi chú đơn hàng:</label>
+            <textarea id="CartNote" name="note" placeholder="Ghi chú về đơn hàng...">{{ cart.note }}</textarea>
+          </div>
+          
+          <div class="cart-summary">
+            <div class="cart-subtotal">
+              <span>Tạm tính:</span>
+              <span class="cart-subtotal-price">{{ cart.total_price | money }}</span>
+            </div>
+            
+            <p class="cart-shipping-note">Phí vận chuyển sẽ được tính khi thanh toán</p>
+            
+            <button type="submit" name="update" class="btn btn-secondary btn-update">
+              Cập nhật giỏ hàng
+            </button>
+            
+            <button type="submit" name="checkout" class="btn btn-primary btn-checkout">
+              Thanh toán
+            </button>
+          </div>
+        </div>
+      </form>
+    {% else %}
+      <div class="cart-empty">
+        <p>Giỏ hàng của bạn đang trống</p>
+        <a href="{{ routes.collections_url }}" class="btn btn-primary">
+          Tiếp tục mua sắm
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart Page",
+  "class": "cart-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_note",
+      "label": "Show cart note",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,93 @@
+{
+    "settings_schema": {
+        "colors": {
+            "name": "Colors",
+            "settings": {
+                "color_primary": {
+                    "label": "Primary color"
+                },
+                "color_secondary": {
+                    "label": "Secondary color"
+                },
+                "color_accent": {
+                    "label": "Accent color"
+                }
+            }
+        },
+        "typography": {
+            "name": "Typography",
+            "settings": {
+                "type_header_font": {
+                    "label": "Heading font"
+                },
+                "type_body_font": {
+                    "label": "Body font"
+                }
+            }
+        }
+    },
+    "sections": {
+        "header": {
+            "name": "Header",
+            "settings": {
+                "menu": {
+                    "label": "Menu"
+                },
+                "sticky_header": {
+                    "label": "Enable sticky header"
+                }
+            }
+        },
+        "hero_banner": {
+            "name": "Hero Banner",
+            "settings": {
+                "background_image": {
+                    "label": "Background image"
+                },
+                "heading": {
+                    "label": "Heading"
+                },
+                "subheading": {
+                    "label": "Subheading"
+                },
+                "button_label": {
+                    "label": "Button label"
+                },
+                "button_link": {
+                    "label": "Button link"
+                }
+            },
+            "presets": {
+                "name": "Hero Banner"
+            }
+        },
+        "featured_products": {
+            "name": "Featured Products",
+            "settings": {
+                "heading": {
+                    "label": "Heading"
+                },
+                "collection": {
+                    "label": "Collection"
+                },
+                "products_to_show": {
+                    "label": "Products to show"
+                }
+            },
+            "presets": {
+                "name": "Featured Products"
+            }
+        },
+        "footer": {
+            "name": "Footer",
+            "settings": {
+                "col1_heading": {
+                    "label": "Column 1 heading"
+                },
+                "col1_menu": {
+                    "label": "Column 1 menu"
+                }
+            }
+        }
+    }
+}

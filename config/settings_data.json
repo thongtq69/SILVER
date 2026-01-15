@@ -1,0 +1,113 @@
+{
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "hero_banner": {
+        "type": "hero-banner",
+        "settings": {
+          "heading": "Avalane & Co",
+          "subheading": "Khuyến mãi hấp dẫn lên đến 30%",
+          "button_label": "Mua ngay",
+          "button_link": "/collections/all"
+        }
+      },
+      "intro_text": {
+        "type": "intro-text",
+        "settings": {
+          "heading": "Hiện thực giấc mơ của bạn",
+          "text": "Thành lập từ năm 1985 bởi nhà sáng lập Daniel Avalane, chúng tôi đã trở thành thương hiệu trang sức dẫn đầu thế giới - trong đó có Việt Nam, với các sản phẩm pha lê tinh tế hiện thực giấc mơ của bạn. Avalane & Co tự hào là website phân phối trang sức Avalane chính hãng tại Việt Nam."
+        }
+      },
+      "featured_categories": {
+        "type": "featured-categories",
+        "settings": {
+          "heading": "Danh mục nổi bật"
+        },
+        "blocks": {
+          "category_1": {
+            "type": "category",
+            "settings": {
+              "title": "Dây chuyền",
+              "link_text": "Xem mẫu"
+            }
+          },
+          "category_2": {
+            "type": "category",
+            "settings": {
+              "title": "Vòng tay",
+              "link_text": "Xem mẫu"
+            }
+          },
+          "category_3": {
+            "type": "category",
+            "settings": {
+              "title": "Bông tai",
+              "link_text": "Xem mẫu"
+            }
+          }
+        },
+        "block_order": ["category_1", "category_2", "category_3"]
+      },
+      "category_icons": {
+        "type": "category-icons",
+        "settings": {},
+        "blocks": {
+          "icon_1": {
+            "type": "icon",
+            "settings": {
+              "title": "Dây chuyền"
+            }
+          },
+          "icon_2": {
+            "type": "icon",
+            "settings": {
+              "title": "Vòng tay"
+            }
+          },
+          "icon_3": {
+            "type": "icon",
+            "settings": {
+              "title": "Bông tai"
+            }
+          },
+          "icon_4": {
+            "type": "icon",
+            "settings": {
+              "title": "Nhẫn"
+            }
+          }
+        },
+        "block_order": ["icon_1", "icon_2", "icon_3", "icon_4"]
+      },
+      "featured_products": {
+        "type": "featured-products",
+        "settings": {
+          "heading": "Sản phẩm nổi bật",
+          "products_to_show": 8
+        }
+      },
+      "contact_section": {
+        "type": "contact-section",
+        "settings": {
+          "heading": "LIÊN HỆ VỚI CHÚNG TÔI",
+          "hours": "Hỗ trợ từ 8h - 22h hàng ngày"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": [
+      "hero_banner",
+      "intro_text",
+      "featured_categories",
+      "category_icons",
+      "featured_products",
+      "contact_section"
+    ]
+  }
+}

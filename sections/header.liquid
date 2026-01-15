@@ -1,0 +1,134 @@
+<header class="site-header" data-section-id="{{ section.id }}">
+  <div class="header-container">
+    <!-- Logo -->
+    <div class="header-logo">
+      <a href="/" class="logo-link">
+        {% if settings.logo %}
+          <img 
+            src="{{ settings.logo | image_url: width: settings.logo_max_width }}" 
+            alt="{{ shop.name }}"
+            class="logo-image"
+            width="{{ settings.logo_max_width }}"
+            loading="lazy"
+          >
+        {% else %}
+          <span class="logo-text">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="header-nav" aria-label="Main navigation">
+      {% if section.settings.menu != blank %}
+        <ul class="nav-list">
+          {% for link in section.settings.menu.links %}
+            <li class="nav-item {% if link.links != blank %}has-dropdown{% endif %}">
+              <a href="{{ link.url }}" class="nav-link {% if link.active %}active{% endif %}">
+                {{ link.title }}
+              </a>
+              {% if link.links != blank %}
+                <ul class="dropdown-menu">
+                  {% for child_link in link.links %}
+                    <li class="dropdown-item">
+                      <a href="{{ child_link.url }}" class="dropdown-link">
+                        {{ child_link.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <!-- Search -->
+      <button class="header-action-btn search-toggle" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </button>
+
+      <!-- Account -->
+      <a href="{{ routes.account_url }}" class="header-action-btn" aria-label="Account">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </a>
+
+      <!-- Cart -->
+      <a href="{{ routes.cart_url }}" class="header-action-btn cart-toggle" aria-label="Cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+          <path d="M3 6h18"></path>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        {% if cart.item_count > 0 %}
+          <span class="cart-count">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" aria-hidden="true">
+    <nav class="mobile-nav">
+      {% if section.settings.menu != blank %}
+        <ul class="mobile-nav-list">
+          {% for link in section.settings.menu.links %}
+            <li class="mobile-nav-item">
+              <a href="{{ link.url }}" class="mobile-nav-link">
+                {{ link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "header-section",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "label": "Enable sticky header",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "header_bg",
+      "label": "Header background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "header_text",
+      "label": "Header text color",
+      "default": "#000000"
+    }
+  ]
+}
+{% endschema %}
