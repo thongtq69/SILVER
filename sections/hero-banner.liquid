@@ -1,22 +1,41 @@
-<section class="hero-banner" data-section-id="{{ section.id }}" style="{% if section.settings.background_image %}background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');{% endif %}">
-  <div class="hero-overlay" style="background: {{ section.settings.overlay_color }}; opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
-  
-  <div class="hero-content">
-    {% if section.settings.logo_image %}
+<section class="hero-banner hero-banner--{{ section.settings.height }}" data-section-id="{{ section.id }}">
+  <!-- Pink gradient background -->
+  <div class="hero-background">
+    {% if section.settings.background_image %}
       <img 
-        src="{{ section.settings.logo_image | image_url: width: 200 }}" 
-        alt="{{ section.settings.heading }}"
-        class="hero-logo"
+        src="{{ section.settings.background_image | image_url: width: 1920 }}"
+        alt=""
+        class="hero-bg-image"
         loading="eager"
       >
+    {% else %}
+      <div class="hero-gradient"></div>
+    {% endif %}
+  </div>
+  
+  <div class="hero-content" style="text-align: {{ section.settings.text_alignment }};">
+    <!-- Crystal rose / center image -->
+    {% if section.settings.center_image %}
+      <div class="hero-center-image">
+        <img 
+          src="{{ section.settings.center_image | image_url: width: 400 }}" 
+          alt="{{ section.settings.heading }}"
+          class="hero-crystal-image"
+          loading="eager"
+        >
+      </div>
     {% endif %}
     
     {% if section.settings.heading != blank %}
-      <h1 class="hero-heading">{{ section.settings.heading }}</h1>
+      <h1 class="hero-heading" style="color: {{ section.settings.text_color }};">
+        {{ section.settings.heading }}
+      </h1>
     {% endif %}
     
     {% if section.settings.subheading != blank %}
-      <p class="hero-subheading">{{ section.settings.subheading }}</p>
+      <p class="hero-subheading" style="color: {{ section.settings.text_color }};">
+        {{ section.settings.subheading }}
+      </p>
     {% endif %}
     
     {% if section.settings.button_label != blank %}
@@ -34,14 +53,27 @@
   "class": "hero-section",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background image"
+      "type": "header",
+      "content": "Background"
     },
     {
       "type": "image_picker",
-      "id": "logo_image",
-      "label": "Center logo/image"
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Leave empty to use default pink gradient"
+    },
+    {
+      "type": "header",
+      "content": "Center Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "center_image",
+      "label": "Center image (crystal rose)"
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
     },
     {
       "type": "text",
@@ -67,29 +99,17 @@
       "label": "Button link"
     },
     {
-      "type": "color",
-      "id": "overlay_color",
-      "label": "Overlay color",
-      "default": "#FFE4EC"
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "label": "Overlay opacity",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "%",
-      "default": 30
+      "type": "header",
+      "content": "Layout"
     },
     {
       "type": "select",
       "id": "height",
       "label": "Section height",
       "options": [
-        { "value": "small", "label": "Small" },
-        { "value": "medium", "label": "Medium" },
-        { "value": "large", "label": "Large" },
+        { "value": "small", "label": "Small (400px)" },
+        { "value": "medium", "label": "Medium (500px)" },
+        { "value": "large", "label": "Large (600px)" },
         { "value": "fullscreen", "label": "Full screen" }
       ],
       "default": "large"

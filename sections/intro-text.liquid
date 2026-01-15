@@ -1,17 +1,18 @@
-<section class="intro-text-section" data-section-id="{{ section.id }}" style="background-color: {{ section.settings.background_color }};">
-  <div class="container">
-    <div class="intro-content" style="text-align: {{ section.settings.text_alignment }};">
-      {% if section.settings.image %}
-        <div class="intro-image">
-          <img 
-            src="{{ section.settings.image | image_url: width: 300 }}" 
-            alt="{{ section.settings.heading }}"
-            class="intro-img"
-            loading="lazy"
-          >
-        </div>
-      {% endif %}
-      
+<section class="intro-section" data-section-id="{{ section.id }}" style="background-color: {{ section.settings.background_color }};">
+  <div class="intro-container">
+    <!-- Decorative image (crystal rose) -->
+    {% if section.settings.image %}
+      <div class="intro-image-wrapper">
+        <img 
+          src="{{ section.settings.image | image_url: width: 300 }}" 
+          alt=""
+          class="intro-decorative-image"
+          loading="lazy"
+        >
+      </div>
+    {% endif %}
+    
+    <div class="intro-text-content" style="text-align: {{ section.settings.text_alignment }};">
       {% if section.settings.heading != blank %}
         <h2 class="intro-heading" style="color: {{ section.settings.text_color }};">
           {{ section.settings.heading }}
@@ -25,7 +26,7 @@
       {% endif %}
       
       {% if section.settings.button_label != blank %}
-        <a href="{{ section.settings.button_link }}" class="btn btn-secondary">
+        <a href="{{ section.settings.button_link }}" class="btn btn-secondary intro-btn">
           {{ section.settings.button_label }}
         </a>
       {% endif %}
@@ -37,12 +38,12 @@
 {
   "name": "Intro Text",
   "tag": "section",
-  "class": "intro-section",
+  "class": "intro-text-section",
   "settings": [
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image (optional)"
+      "label": "Decorative image"
     },
     {
       "type": "text",
