@@ -139,7 +139,91 @@
         "settings": {
           "heading": "Featured Products",
           "products_to_show": 8
-        }
+        },
+        "blocks": {
+          "p1": {
+            "type": "product_block",
+            "settings": {
+              "image_asset_name": "product-1-swavi.webp",
+              "title": "Dazzling Swan Necklace",
+              "price": "19900",
+              "compare_at_price": "24900"
+            }
+          },
+          "p2": {
+            "type": "product_block",
+            "settings": {
+              "image_asset_name": "product-2-swavi.webp",
+              "title": "Dancing Swan Necklace",
+              "price": "22900",
+              "compare_at_price": "27900"
+            }
+          },
+          "p3": {
+            "type": "product_block",
+            "settings": {
+              "image_asset_name": "product-3-swavi.webp",
+              "title": "Dazzling Swan Pink",
+              "price": "21900",
+              "compare_at_price": "0"
+            }
+          },
+          "p4": {
+            "type": "product_block",
+            "settings": {
+              "image_asset_name": "product-4-swavi.webp",
+              "title": "Dancing Swan Blue",
+              "price": "18900",
+              "compare_at_price": "23900"
+            }
+          },
+          "p5": {
+            "type": "product_block",
+            "settings": {
+              "image_asset_name": "product-5-swavi.webp",
+              "title": "Dancing Swan White",
+              "price": "19900",
+              "compare_at_price": "0"
+            }
+          },
+          "p6": {
+            "type": "product_block",
+            "settings": {
+              "image_asset_name": "product-6-swavi.webp",
+              "title": "Swan Pendant Black",
+              "price": "17900",
+              "compare_at_price": "20900"
+            }
+          },
+          "p7": {
+            "type": "product_block",
+            "settings": {
+              "image_asset_name": "product-7-swavi.webp",
+              "title": "Swan Pendant White",
+              "price": "17900",
+              "compare_at_price": "0"
+            }
+          },
+          "p8": {
+            "type": "product_block",
+            "settings": {
+              "image_asset_name": "product-8-swavi.webp",
+              "title": "Swan Pendant Blue",
+              "price": "18900",
+              "compare_at_price": "22900"
+            }
+          }
+        },
+        "block_order": [
+          "p1",
+          "p2",
+          "p3",
+          "p4",
+          "p5",
+          "p6",
+          "p7",
+          "p8"
+        ]
       },
       "contact_section": {
         "type": "contact-section",
@@ -150,7 +234,14 @@
       },
       "footer": {
         "type": "footer",
-        "settings": {}
+        "settings": {
+          "col1_heading": "PRODUCT CATEGORIES",
+          "col2_heading": "CUSTOMER SUPPORT",
+          "col3_heading": "ABOUT US",
+          "address": "Level 25, 100 Mount Street, North Sydney NSW 2060, Australia",
+          "col4_heading": "CUSTOMER TRUST",
+          "review_count": "5000+ Happy Customers"
+        }
       }
     },
     "content_for_index": [

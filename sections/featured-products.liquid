@@ -13,6 +13,53 @@
         {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
           {% render 'product-card', product: product, show_sale_badge: section.settings.show_sale_badge %}
         {% endfor %}
+      {% elsif section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <div class="product-card" {{ block.shopify_attributes }}>
+            <div class="product-card-image">
+              {% if section.settings.show_sale_badge and block.settings.compare_at_price > block.settings.price %}
+                <span class="product-badge sale-badge">Sale</span>
+              {% endif %}
+              
+              <a href="{{ block.settings.link | default: '#' }}" class="product-card-link">
+                {% if block.settings.image %}
+                  <img 
+                    src="{{ block.settings.image | image_url: width: 400 }}" 
+                    alt="{{ block.settings.title }}"
+                    class="product-img"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                {% elsif block.settings.image_asset_name != blank %}
+                  <img 
+                    src="{{ block.settings.image_asset_name | asset_url }}" 
+                    alt="{{ block.settings.title }}"
+                    class="product-img"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                {% else %}
+                  {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </a>
+            </div>
+            <div class="product-card-info">
+              <h3 class="product-card-title">
+                <a href="{{ block.settings.link | default: '#' }}">{{ block.settings.title }}</a>
+              </h3>
+              <div class="product-card-price">
+                {% if block.settings.compare_at_price > block.settings.price %}
+                  <span class="price-compare">{{ block.settings.compare_at_price | money }}</span>
+                  <span class="price-current price-sale">{{ block.settings.price | money }}</span>
+                {% else %}
+                  <span class="price-current">{{ block.settings.price | money }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
       {% else %}
         {% for i in (1..section.settings.products_to_show) %}
           <div class="product-card product-card--placeholder">
@@ -30,10 +77,10 @@
       {% endif %}
     </div>
     
-    {% if section.settings.show_view_all and section.settings.collection != blank %}
+    {% if section.settings.show_view_all %}
       <div class="section-footer">
-        <a href="{{ section.settings.collection.url }}" class="btn btn-secondary">
-          {{ section.settings.view_all_text | default: 'Xem tất cả' }}
+        <a href="{{ section.settings.collection.url | default: '#' }}" class="btn btn-secondary">
+          {{ section.settings.view_all_text | default: 'View All' }}
         </a>
       </div>
     {% endif %}
@@ -99,6 +146,47 @@
       "id": "view_all_text",
       "label": "View all button text",
       "default": "View All"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_block",
+      "name": "Simulated Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "image_asset_name",
+          "label": "Image Asset Name (e.g. product-1.webp)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Product Title",
+          "default": "Product Title"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price (cents)",
+          "default": "19900"
+        },
+        {
+          "type": "text",
+          "id": "compare_at_price",
+          "label": "Compare at Price (cents)",
+          "default": "24900"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
     }
   ],
   "presets": [
