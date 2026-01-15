@@ -47,12 +47,20 @@
               "title": "Earrings",
               "link_text": "View Collection"
             }
+          },
+          "category_4": {
+            "type": "category",
+            "settings": {
+              "title": "Rings",
+              "link_text": "View Collection"
+            }
           }
         },
         "block_order": [
           "category_1",
           "category_2",
-          "category_3"
+          "category_3",
+          "category_4"
         ]
       },
       "category_icons": {

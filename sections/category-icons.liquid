@@ -18,11 +18,42 @@
             {% elsif block.settings.icon != blank %}
               <span class="icon-emoji">{{ block.settings.icon }}</span>
             {% else %}
-              <span class="icon-placeholder">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
-              </span>
+              {% assign icon_title_downcase = block.settings.title | downcase %}
+              {% if icon_title_downcase contains 'necklace' %}
+                <img 
+                  src="{{ 'icon-necklace-new.png' | asset_url }}" 
+                  alt="{{ block.settings.title }}"
+                  class="icon-img"
+                  loading="lazy"
+                >
+              {% elsif icon_title_downcase contains 'bracelet' %}
+                <img 
+                  src="{{ 'icon-bracelet.png' | asset_url }}" 
+                  alt="{{ block.settings.title }}"
+                  class="icon-img"
+                  loading="lazy"
+                >
+              {% elsif icon_title_downcase contains 'earring' %}
+                <img 
+                  src="{{ 'icon-earring.png' | asset_url }}" 
+                  alt="{{ block.settings.title }}"
+                  class="icon-img"
+                  loading="lazy"
+                >
+              {% elsif icon_title_downcase contains 'ring' %}
+                <img 
+                  src="{{ 'icon-ring.png' | asset_url }}" 
+                  alt="{{ block.settings.title }}"
+                  class="icon-img"
+                  loading="lazy"
+                >
+              {% else %}
+                <span class="icon-placeholder">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                  </svg>
+                </span>
+              {% endif %}
             {% endif %}
           </div>
           <span class="category-icon-title">{{ block.settings.title }}</span>

@@ -9,7 +9,12 @@
         loading="eager"
       >
     {% else %}
-      <div class="hero-gradient"></div>
+      <img 
+        src="{{ 'hero-banner-bg.png' | asset_url }}"
+        alt=""
+        class="hero-bg-image"
+        loading="eager"
+      >
     {% endif %}
   </div>
   

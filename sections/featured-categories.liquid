@@ -31,8 +31,47 @@
                 >
               </div>
             {% else %}
-              <div class="category-image category-image--placeholder">
-                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              <div class="category-image">
+                {% assign block_title_downcase = block.settings.title | downcase %}
+                {% if block_title_downcase contains 'necklace' %}
+                  <img 
+                    src="{{ 'category-necklace-new.png' | asset_url }}" 
+                    alt="{{ block.settings.title }}"
+                    class="category-img"
+                    loading="lazy"
+                    width="600"
+                    height="600"
+                  >
+                {% elsif block_title_downcase contains 'bracelet' %}
+                  <img 
+                    src="{{ 'category-bracelet-new.png' | asset_url }}" 
+                    alt="{{ block.settings.title }}"
+                    class="category-img"
+                    loading="lazy"
+                    width="600"
+                    height="600"
+                  >
+                {% elsif block_title_downcase contains 'earring' %}
+                  <img 
+                    src="{{ 'category-earring-new.png' | asset_url }}" 
+                    alt="{{ block.settings.title }}"
+                    class="category-img"
+                    loading="lazy"
+                    width="600"
+                    height="600"
+                  >
+                {% elsif block_title_downcase contains 'ring' %}
+                  <img 
+                    src="{{ 'category-ring.png' | asset_url }}" 
+                    alt="{{ block.settings.title }}"
+                    class="category-img"
+                    loading="lazy"
+                    width="600"
+                    height="600"
+                  >
+                {% else %}
+                  {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
               </div>
             {% endif %}
             
