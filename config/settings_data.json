@@ -14,6 +14,41 @@
           "button_link": "/collections/all"
         }
       },
+      "promo_banners": {
+        "type": "promo-banners",
+        "settings": {},
+        "blocks": {
+          "banner_1": {
+            "type": "banner",
+            "settings": {
+              "title": "Necklaces",
+              "subtitle": "Timeless elegance",
+              "button_text": "View Collection"
+            }
+          },
+          "banner_2": {
+            "type": "banner",
+            "settings": {
+              "title": "Bracelets",
+              "subtitle": "Luxury on your wrist",
+              "button_text": "View Collection"
+            }
+          },
+          "banner_3": {
+            "type": "banner",
+            "settings": {
+              "title": "Earrings",
+              "subtitle": "Standout style",
+              "button_text": "View Collection"
+            }
+          }
+        },
+        "block_order": [
+          "banner_1",
+          "banner_2",
+          "banner_3"
+        ]
+      },
       "intro_text": {
         "type": "intro-text",
         "settings": {
@@ -120,9 +155,10 @@
     },
     "content_for_index": [
       "hero_banner",
+      "promo_banners",
       "intro_text",
-      "featured_categories",
       "category_icons",
+      "featured_categories",
       "featured_products",
       "contact_section"
     ]

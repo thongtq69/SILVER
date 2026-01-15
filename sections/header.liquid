@@ -12,7 +12,13 @@
             loading="lazy"
           >
         {% else %}
-          <span class="logo-text">{{ shop.name }}</span>
+          <img 
+            src="{{ 'swavi-logo.webp' | asset_url }}" 
+            alt="{{ shop.name }}"
+            class="logo-image"
+            width="150"
+            loading="lazy"
+          >
         {% endif %}
       </a>
     </div>
