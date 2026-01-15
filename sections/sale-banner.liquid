@@ -1,0 +1,277 @@
+<section class="sale-banner-section" data-section-id="{{ section.id }}" style="background: {{ section.settings.background_gradient }};">
+  <div class="sale-banner-container">
+    <div class="sale-banner-content">
+      {% if section.settings.badge != blank %}
+        <span class="sale-badge-label">{{ section.settings.badge }}</span>
+      {% endif %}
+      
+      {% if section.settings.heading != blank %}
+        <h2 class="sale-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      
+      {% if section.settings.subheading != blank %}
+        <p class="sale-subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+      
+      {% if section.settings.countdown_enabled and section.settings.countdown_date != blank %}
+        <div class="sale-countdown" data-countdown="{{ section.settings.countdown_date }}">
+          <div class="countdown-item">
+            <span class="countdown-value" data-days>00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" data-hours>00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" data-minutes>00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" data-seconds>00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+      {% endif %}
+      
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn sale-btn">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sale-banner-section {
+    padding: var(--spacing-lg) 0;
+    background: linear-gradient(135deg, #D3232A 0%, #e54c52 50%, #D3232A 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sale-banner-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.03) 10px,
+      rgba(255, 255, 255, 0.03) 20px
+    );
+    animation: moveBg 20s linear infinite;
+  }
+  
+  @keyframes moveBg {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+  }
+  
+  .sale-banner-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .sale-badge-label {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: var(--spacing-sm);
+    backdrop-filter: blur(10px);
+  }
+  
+  .sale-heading {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sale-subheading {
+    font-size: 1.125rem;
+    opacity: 0.95;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .sale-countdown {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    min-width: 70px;
+  }
+  
+  .countdown-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  
+  .countdown-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+    margin-top: 4px;
+  }
+  
+  .sale-btn {
+    padding: 1rem 2.5rem;
+    background: white;
+    color: #D3232A;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .sale-btn:hover {
+    background: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: #D3232A;
+  }
+  
+  @media (max-width: 600px) {
+    .sale-countdown {
+      gap: var(--spacing-sm);
+    }
+    
+    .countdown-item {
+      min-width: 60px;
+      padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    .countdown-value {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const countdowns = document.querySelectorAll('.sale-countdown');
+    
+    countdowns.forEach(function(countdown) {
+      const targetDate = new Date(countdown.dataset.countdown).getTime();
+      
+      const updateCountdown = function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        
+        if (distance < 0) {
+          countdown.innerHTML = '<p>Sale has ended!</p>';
+          return;
+        }
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        const daysEl = countdown.querySelector('[data-days]');
+        const hoursEl = countdown.querySelector('[data-hours]');
+        const minutesEl = countdown.querySelector('[data-minutes]');
+        const secondsEl = countdown.querySelector('[data-seconds]');
+        
+        if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+        if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+        if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+      };
+      
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Sale Banner",
+  "tag": "section",
+  "class": "sale-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge text",
+      "default": "Limited Time"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Up to 50% Off Everything"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Don't miss our biggest sale of the year!"
+    },
+    {
+      "type": "checkbox",
+      "id": "countdown_enabled",
+      "label": "Show countdown timer",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "countdown_date",
+      "label": "Countdown end date",
+      "info": "Format: YYYY-MM-DD (e.g. 2026-02-14)",
+      "default": "2026-02-14"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "background_gradient",
+      "label": "Background gradient",
+      "default": "linear-gradient(135deg, #D3232A 0%, #e54c52 50%, #D3232A 100%)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sale Banner",
+      "category": "Promotion"
+    }
+  ]
+}
+{% endschema %}

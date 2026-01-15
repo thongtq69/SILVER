@@ -380,6 +380,56 @@
                 "ig6"
             ]
         },
+        "about_banner": {
+            "type": "about-banner",
+            "settings": {
+                "subtitle": "Our Story",
+                "heading": "Luxury Jewellery for Every Occasion",
+                "text": "<p>Discover our exquisite collection of crystal jewellery, handcrafted with precision and passion. Each piece tells a story of elegance and timeless beauty, designed to make you shine on every special moment.</p>",
+                "button_label": "Learn More",
+                "button_link": "shopify://pages/about-us"
+            },
+            "blocks": {
+                "f1": {
+                    "type": "feature",
+                    "settings": {
+                        "icon": "✨",
+                        "text": "Premium Quality Crystals"
+                    }
+                },
+                "f2": {
+                    "type": "feature",
+                    "settings": {
+                        "icon": "🇦🇺",
+                        "text": "Australian Owned"
+                    }
+                },
+                "f3": {
+                    "type": "feature",
+                    "settings": {
+                        "icon": "💎",
+                        "text": "100% Authentic"
+                    }
+                }
+            },
+            "block_order": [
+                "f1",
+                "f2",
+                "f3"
+            ]
+        },
+        "sale_banner": {
+            "type": "sale-banner",
+            "settings": {
+                "badge": "Limited Time",
+                "heading": "Valentine's Day Sale",
+                "subheading": "Up to 50% off on selected jewellery - Perfect gifts for your loved ones!",
+                "countdown_enabled": true,
+                "countdown_date": "2026-02-14",
+                "button_label": "Shop Now",
+                "button_link": "shopify://collections/sale"
+            }
+        },
         "newsletter": {
             "type": "newsletter",
             "settings": {
@@ -408,6 +458,8 @@
         "category_icons",
         "featured_categories",
         "featured_products",
+        "about_banner",
+        "sale_banner",
         "testimonials",
         "instagram_feed",
         "newsletter",
