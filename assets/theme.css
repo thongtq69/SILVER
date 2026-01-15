@@ -1,23 +1,53 @@
 /* =============================================
    Avalane & Co - Shopify Theme Stylesheet
-   Based on Figma Design
+   Based on Figma Design - 100% Match
    ============================================= */
 
-/* CSS Custom Properties (set by theme.liquid) */
+/* CSS Custom Properties - Figma Design System */
 :root {
+  /* Colors from Figma */
   --color-primary: #000000;
-  --color-secondary: #F2EFE8;
-  --color-accent: #D0021B;
+  --color-secondary: #F0EEE4;
+  --color-accent: #D3232A;
   --color-background: #FFFFFF;
   --color-text: #000000;
+  --color-text-secondary: #72767C;
+  --color-pink-light: #FCC2CC;
+  --color-cream: #F0EEE4;
   --color-footer-bg: #000000;
   --color-footer-text: #FFFFFF;
-  --font-heading: 'Montserrat', sans-serif;
-  --font-body: 'Montserrat', sans-serif;
+
+  /* Typography from Figma - Inter Font */
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
   --font-size-base: 16px;
+
+  /* Figma Typography Scale */
+  --font-size-hero: 55.8px;
+  --font-size-h1: 36.5px;
+  --font-size-h2: 24px;
+  --font-size-body: 17px;
+  --font-size-small: 14px;
+  --font-size-xs: 12px;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Line Heights from Figma */
+  --line-height-hero: 74.4px;
+  --line-height-h1: 48px;
+  --line-height-body: 30px;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -1.5px;
+  --letter-spacing-normal: -0.2px;
+
+  /* Layout */
   --border-radius: 8px;
   --transition: 0.3s ease;
-  --container-max: 1400px;
+  --container-max: 1440px;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
