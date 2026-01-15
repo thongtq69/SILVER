@@ -18,7 +18,9 @@
           <div class="product-card" {{ block.shopify_attributes }}>
             <div class="product-card-image">
               {% if section.settings.show_sale_badge and block.settings.compare_at_price > block.settings.price %}
-                <span class="product-badge sale-badge">Sale</span>
+                {% assign saved_amount = block.settings.compare_at_price | minus: block.settings.price %}
+                {% assign saved_percentage = saved_amount | times: 100.0 | divided_by: block.settings.compare_at_price | round %}
+                <span class="product-badge sale-badge">-{{ saved_percentage }}%</span>
               {% endif %}
               
               <a href="{{ block.settings.link | default: '#' }}" class="product-card-link">
@@ -51,7 +53,7 @@
               </h3>
               <div class="product-card-price">
                 {% if block.settings.compare_at_price > block.settings.price %}
-                  <span class="price-compare">{{ block.settings.compare_at_price | money }}</span>
+                  <span class="price-original">{{ block.settings.compare_at_price | money }}</span>
                   <span class="price-current price-sale">{{ block.settings.price | money }}</span>
                 {% else %}
                   <span class="price-current">{{ block.settings.price | money }}</span>

@@ -145,72 +145,72 @@
             "type": "product_block",
             "settings": {
               "image_asset_name": "product-1-swavi.webp",
-              "title": "Dazzling Swan Necklace",
-              "price": "19900",
-              "compare_at_price": "24900"
+              "title": "Swarovski Dazzling Swan Necklace 5469989",
+              "price": "13900",
+              "compare_at_price": "17500"
             }
           },
           "p2": {
             "type": "product_block",
             "settings": {
               "image_asset_name": "product-2-swavi.webp",
-              "title": "Dancing Swan Necklace",
-              "price": "22900",
-              "compare_at_price": "27900"
+              "title": "Swarovski Dancing Swan Necklace 5514421",
+              "price": "18900",
+              "compare_at_price": "24900"
             }
           },
           "p3": {
             "type": "product_block",
             "settings": {
               "image_asset_name": "product-3-swavi.webp",
-              "title": "Dazzling Swan Pink",
-              "price": "21900",
-              "compare_at_price": "0"
+              "title": "Swarovski Dazzling Swan Necklace 5563464",
+              "price": "14500",
+              "compare_at_price": "17500"
             }
           },
           "p4": {
             "type": "product_block",
             "settings": {
               "image_asset_name": "product-4-swavi.webp",
-              "title": "Dancing Swan Blue",
-              "price": "18900",
-              "compare_at_price": "23900"
+              "title": "Swarovski Dancing Swan Necklace 5533397",
+              "price": "17500",
+              "compare_at_price": "24900"
             }
           },
           "p5": {
             "type": "product_block",
             "settings": {
               "image_asset_name": "product-5-swavi.webp",
-              "title": "Dancing Swan White",
+              "title": "Swarovski Dancing Swan Necklace 5614123",
               "price": "19900",
-              "compare_at_price": "0"
+              "compare_at_price": "24900"
             }
           },
           "p6": {
             "type": "product_block",
             "settings": {
               "image_asset_name": "product-6-swavi.webp",
-              "title": "Swan Pendant Black",
-              "price": "17900",
-              "compare_at_price": "20900"
+              "title": "Swarovski Swan Pendant 5732414",
+              "price": "12900",
+              "compare_at_price": "15900"
             }
           },
           "p7": {
             "type": "product_block",
             "settings": {
               "image_asset_name": "product-7-swavi.webp",
-              "title": "Swan Pendant White",
-              "price": "17900",
-              "compare_at_price": "0"
+              "title": "Swarovski Swan Pendant 5732413",
+              "price": "12900",
+              "compare_at_price": "15900"
             }
           },
           "p8": {
             "type": "product_block",
             "settings": {
               "image_asset_name": "product-8-swavi.webp",
-              "title": "Swan Pendant Blue",
-              "price": "18900",
-              "compare_at_price": "22900"
+              "title": "Swarovski Swan Pendant 5723389",
+              "price": "13900",
+              "compare_at_price": "17900"
             }
           }
         },
