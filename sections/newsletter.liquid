@@ -1,0 +1,89 @@
+<section class="newsletter-section" data-section-id="{{ section.id }}">
+  <div class="newsletter-container">
+    {% if section.settings.heading != blank %}
+      <h2 class="newsletter-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.text != blank %}
+      <p class="newsletter-text">{{ section.settings.text }}</p>
+    {% endif %}
+    
+    {% form 'customer', id: 'newsletter-form', class: 'newsletter-form' %}
+      <input 
+        type="email" 
+        name="contact[email]" 
+        class="newsletter-input" 
+        placeholder="{{ section.settings.placeholder | default: 'Enter your email address' }}"
+        required
+        autocomplete="email"
+      >
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <button type="submit" class="newsletter-btn">
+        {{ section.settings.button_text | default: 'Subscribe' }}
+      </button>
+    {% endform %}
+    
+    {% if section.settings.disclaimer != blank %}
+      <p class="newsletter-disclaimer">{{ section.settings.disclaimer }}</p>
+    {% endif %}
+    
+    <!-- Success/Error Messages -->
+    {% if form.posted_successfully? %}
+      <p class="newsletter-success" style="color: #28a745; margin-top: 1rem;">
+        Thank you for subscribing! Check your inbox for exclusive offers.
+      </p>
+    {% endif %}
+    
+    {% if form.errors %}
+      <p class="newsletter-error" style="color: #dc3545; margin-top: 1rem;">
+        {{ form.errors | default_errors }}
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "class": "newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join Our VIP List"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Subscribe to receive exclusive offers, early access to new arrivals, and 10% off your first order. Free Australia-wide shipping on orders over $100."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Disclaimer text",
+      "default": "By subscribing, you agree to receive marketing emails. Unsubscribe anytime."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter",
+      "category": "Email Marketing"
+    }
+  ]
+}
+{% endschema %}

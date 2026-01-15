@@ -22,7 +22,7 @@
                 {% assign block_title_downcase = block.settings.title | downcase %}
                 {% if block_title_downcase contains 'necklace' %}
                   <img 
-                    src="{{ 'banner-necklace.webp' | asset_url }}" 
+                    src="{{ 'category-necklace-new.png' | asset_url }}" 
                     alt="{{ block.settings.title }}"
                     class="promo-banner-img"
                     loading="lazy"
@@ -31,7 +31,7 @@
                   >
                 {% elsif block_title_downcase contains 'bracelet' %}
                   <img 
-                    src="{{ 'banner-bracelet.webp' | asset_url }}" 
+                    src="{{ 'category-bracelet-new.png' | asset_url }}" 
                     alt="{{ block.settings.title }}"
                     class="promo-banner-img"
                     loading="lazy"
@@ -40,7 +40,16 @@
                   >
                 {% elsif block_title_downcase contains 'earring' %}
                   <img 
-                    src="{{ 'banner-earring.webp' | asset_url }}" 
+                    src="{{ 'category-earring-new.png' | asset_url }}" 
+                    alt="{{ block.settings.title }}"
+                    class="promo-banner-img"
+                    loading="lazy"
+                    width="800"
+                    height="600"
+                  >
+                {% elsif block_title_downcase contains 'ring' %}
+                  <img 
+                    src="{{ 'category-ring.png' | asset_url }}" 
                     alt="{{ block.settings.title }}"
                     class="promo-banner-img"
                     loading="lazy"

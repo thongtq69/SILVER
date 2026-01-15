@@ -90,7 +90,7 @@
           </select>
 
           <div class="product-quantity">
-            <label for="Quantity">Số lượng</label>
+            <label for="Quantity">Quantity</label>
             <div class="quantity-selector">
               <button type="button" class="quantity-btn minus" aria-label="Decrease quantity">-</button>
               <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-input">
@@ -104,21 +104,21 @@
             {% unless product.available %}disabled{% endunless %}
           >
             {% if product.available %}
-              <span>Thêm vào giỏ hàng</span>
+              <span>Add to Cart</span>
             {% else %}
-              <span>Hết hàng</span>
+              <span>Sold Out</span>
             {% endif %}
           </button>
 
           <button type="button" class="btn btn-secondary btn-buy-now">
-            Mua ngay
+            Buy Now
           </button>
         {% endform %}
 
         <!-- Product Description -->
         {% if product.description != blank %}
           <div class="product-description">
-            <h3>Mô tả sản phẩm</h3>
+            <h3>Product Description</h3>
             {{ product.description }}
           </div>
         {% endif %}

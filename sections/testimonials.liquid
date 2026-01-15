@@ -1,0 +1,238 @@
+<section class="testimonials-section" data-section-id="{{ section.id }}">
+  <div class="testimonials-container">
+    {% if section.settings.heading != blank %}
+      <h2 class="testimonials-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.subheading != blank %}
+      <p class="testimonials-subheading">{{ section.settings.subheading }}</p>
+    {% endif %}
+    
+    <div class="testimonials-grid">
+      {% for block in section.blocks %}
+        <div class="testimonial-card" {{ block.shopify_attributes }}>
+          <div class="testimonial-stars">
+            {% assign star_count = block.settings.rating | default: 5 %}
+            {% for i in (1..5) %}
+              {% if i <= star_count %}
+                <span class="testimonial-star">★</span>
+              {% else %}
+                <span class="testimonial-star" style="opacity: 0.3;">★</span>
+              {% endif %}
+            {% endfor %}
+          </div>
+          
+          <p class="testimonial-text">{{ block.settings.text }}</p>
+          
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              {% if block.settings.avatar %}
+                <img 
+                  src="{{ block.settings.avatar | image_url: width: 100 }}" 
+                  alt="{{ block.settings.name }}"
+                  loading="lazy"
+                >
+              {% else %}
+                {{ block.settings.name | slice: 0 }}
+              {% endif %}
+            </div>
+            <div class="testimonial-info">
+              <span class="testimonial-name">{{ block.settings.name }}</span>
+              <span class="testimonial-location">{{ block.settings.location }}</span>
+              {% if block.settings.verified %}
+                <span class="testimonial-verified">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  </svg>
+                  Verified Purchase
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      
+      {% if section.blocks.size == 0 %}
+        <!-- Default testimonials for preview -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+          </div>
+          <p class="testimonial-text">Absolutely stunning jewellery! The necklace arrived beautifully packaged and looks even better in person. Fast delivery to Sydney and excellent customer service. Highly recommend!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div class="testimonial-info">
+              <span class="testimonial-name">Sarah M.</span>
+              <span class="testimonial-location">Sydney, NSW</span>
+              <span class="testimonial-verified">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                Verified Purchase
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+          </div>
+          <p class="testimonial-text">Beautiful quality crystals at such great prices! Ordered matching earrings and bracelet for my daughter's wedding. She was thrilled! Will definitely be ordering again.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">J</div>
+            <div class="testimonial-info">
+              <span class="testimonial-name">Jennifer L.</span>
+              <span class="testimonial-location">Melbourne, VIC</span>
+              <span class="testimonial-verified">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                Verified Purchase
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+            <span class="testimonial-star">★</span>
+          </div>
+          <p class="testimonial-text">Amazing experience from start to finish. The swan pendant is gorgeous and the packaging made it perfect for gifting. Customer support was incredibly helpful with my enquiry.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">E</div>
+            <div class="testimonial-info">
+              <span class="testimonial-name">Emma T.</span>
+              <span class="testimonial-location">Brisbane, QLD</span>
+              <span class="testimonial-verified">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                Verified Purchase
+              </span>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "testimonials",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Join thousands of happy customers across Australia"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Star rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review text",
+          "default": "Absolutely stunning jewellery! The necklace arrived beautifully packaged and looks even better in person."
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Customer avatar (optional)"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer name",
+          "default": "Sarah M."
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "Sydney, NSW"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Show verified badge",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "category": "Social Proof",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Absolutely stunning jewellery! The necklace arrived beautifully packaged and looks even better in person. Fast delivery to Sydney and excellent customer service.",
+            "name": "Sarah M.",
+            "location": "Sydney, NSW",
+            "verified": true
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Beautiful quality crystals at such great prices! Ordered matching earrings and bracelet for my daughter's wedding. She was thrilled!",
+            "name": "Jennifer L.",
+            "location": "Melbourne, VIC",
+            "verified": true
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Amazing experience from start to finish. The swan pendant is gorgeous and the packaging made it perfect for gifting.",
+            "name": "Emma T.",
+            "location": "Brisbane, QLD",
+            "verified": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

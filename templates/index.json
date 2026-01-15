@@ -14,6 +14,50 @@
                 "text_color": "#000000"
             }
         },
+        "trust_badges": {
+            "type": "trust-badges",
+            "settings": {},
+            "blocks": {
+                "badge_1": {
+                    "type": "badge",
+                    "settings": {
+                        "icon": "shipping",
+                        "title": "Free AU Shipping",
+                        "text": "On orders over $100"
+                    }
+                },
+                "badge_2": {
+                    "type": "badge",
+                    "settings": {
+                        "icon": "secure",
+                        "title": "Secure Payment",
+                        "text": "SSL encrypted checkout"
+                    }
+                },
+                "badge_3": {
+                    "type": "badge",
+                    "settings": {
+                        "icon": "return",
+                        "title": "Easy Returns",
+                        "text": "30-day money back"
+                    }
+                },
+                "badge_4": {
+                    "type": "badge",
+                    "settings": {
+                        "icon": "authentic",
+                        "title": "100% Authentic",
+                        "text": "Genuine crystals"
+                    }
+                }
+            },
+            "block_order": [
+                "badge_1",
+                "badge_2",
+                "badge_3",
+                "badge_4"
+            ]
+        },
         "promo_banners": {
             "type": "promo-banners",
             "settings": {
@@ -61,6 +105,45 @@
                 "text_alignment": "center"
             }
         },
+        "category_icons": {
+            "type": "category-icons",
+            "settings": {
+                "heading": "Shop by Category",
+                "background_color": "#FFFFFF"
+            },
+            "blocks": {
+                "icon_1": {
+                    "type": "icon",
+                    "settings": {
+                        "title": "Necklaces"
+                    }
+                },
+                "icon_2": {
+                    "type": "icon",
+                    "settings": {
+                        "title": "Bracelets"
+                    }
+                },
+                "icon_3": {
+                    "type": "icon",
+                    "settings": {
+                        "title": "Earrings"
+                    }
+                },
+                "icon_4": {
+                    "type": "icon",
+                    "settings": {
+                        "title": "Rings"
+                    }
+                }
+            },
+            "block_order": [
+                "icon_1",
+                "icon_2",
+                "icon_3",
+                "icon_4"
+            ]
+        },
         "featured_categories": {
             "type": "featured-categories",
             "settings": {
@@ -102,45 +185,6 @@
                 "category_2",
                 "category_3",
                 "category_4"
-            ]
-        },
-        "category_icons": {
-            "type": "category-icons",
-            "settings": {
-                "heading": "Product Categories",
-                "background_color": "#FFFFFF"
-            },
-            "blocks": {
-                "icon_1": {
-                    "type": "icon",
-                    "settings": {
-                        "title": "Necklaces"
-                    }
-                },
-                "icon_2": {
-                    "type": "icon",
-                    "settings": {
-                        "title": "Bracelets"
-                    }
-                },
-                "icon_3": {
-                    "type": "icon",
-                    "settings": {
-                        "title": "Earrings"
-                    }
-                },
-                "icon_4": {
-                    "type": "icon",
-                    "settings": {
-                        "title": "Rings"
-                    }
-                }
-            },
-            "block_order": [
-                "icon_1",
-                "icon_2",
-                "icon_3",
-                "icon_4"
             ]
         },
         "featured_products": {
@@ -238,6 +282,114 @@
                 "p8"
             ]
         },
+        "testimonials": {
+            "type": "testimonials",
+            "settings": {
+                "heading": "What Our Customers Say",
+                "subheading": "Join thousands of happy customers across Australia"
+            },
+            "blocks": {
+                "t1": {
+                    "type": "testimonial",
+                    "settings": {
+                        "rating": 5,
+                        "text": "Absolutely stunning jewellery! The necklace arrived beautifully packaged and looks even better in person. Fast delivery to Sydney and excellent customer service. Highly recommend!",
+                        "name": "Sarah M.",
+                        "location": "Sydney, NSW",
+                        "verified": true
+                    }
+                },
+                "t2": {
+                    "type": "testimonial",
+                    "settings": {
+                        "rating": 5,
+                        "text": "Beautiful quality crystals at such great prices! Ordered matching earrings and bracelet for my daughter's wedding. She was thrilled! Will definitely be ordering again.",
+                        "name": "Jennifer L.",
+                        "location": "Melbourne, VIC",
+                        "verified": true
+                    }
+                },
+                "t3": {
+                    "type": "testimonial",
+                    "settings": {
+                        "rating": 5,
+                        "text": "Amazing experience from start to finish. The swan pendant is gorgeous and the packaging made it perfect for gifting. Customer support was incredibly helpful with my enquiry.",
+                        "name": "Emma T.",
+                        "location": "Brisbane, QLD",
+                        "verified": true
+                    }
+                }
+            },
+            "block_order": [
+                "t1",
+                "t2",
+                "t3"
+            ]
+        },
+        "instagram_feed": {
+            "type": "instagram-feed",
+            "settings": {
+                "heading": "Follow Us on Instagram",
+                "handle": "@avalane_au",
+                "show_follow_button": true
+            },
+            "blocks": {
+                "ig1": {
+                    "type": "instagram_post",
+                    "settings": {
+                        "image_asset": "product-1-swavi.webp"
+                    }
+                },
+                "ig2": {
+                    "type": "instagram_post",
+                    "settings": {
+                        "image_asset": "product-2-swavi.webp"
+                    }
+                },
+                "ig3": {
+                    "type": "instagram_post",
+                    "settings": {
+                        "image_asset": "product-3-swavi.webp"
+                    }
+                },
+                "ig4": {
+                    "type": "instagram_post",
+                    "settings": {
+                        "image_asset": "product-4-swavi.webp"
+                    }
+                },
+                "ig5": {
+                    "type": "instagram_post",
+                    "settings": {
+                        "image_asset": "product-5-swavi.webp"
+                    }
+                },
+                "ig6": {
+                    "type": "instagram_post",
+                    "settings": {
+                        "image_asset": "product-6-swavi.webp"
+                    }
+                }
+            },
+            "block_order": [
+                "ig1",
+                "ig2",
+                "ig3",
+                "ig4",
+                "ig5",
+                "ig6"
+            ]
+        },
+        "newsletter": {
+            "type": "newsletter",
+            "settings": {
+                "heading": "Join Our VIP List",
+                "text": "Subscribe to receive exclusive offers, early access to new arrivals, and 10% off your first order. Free Australia-wide shipping on orders over $100.",
+                "placeholder": "Enter your email address",
+                "button_text": "Subscribe",
+                "disclaimer": "By subscribing, you agree to receive marketing emails. Unsubscribe anytime."
+            }
+        },
         "contact_section": {
             "type": "contact-section",
             "settings": {
@@ -250,11 +402,15 @@
     },
     "order": [
         "hero_banner",
+        "trust_badges",
         "promo_banners",
         "intro_text",
         "category_icons",
         "featured_categories",
         "featured_products",
+        "testimonials",
+        "instagram_feed",
+        "newsletter",
         "contact_section"
     ]
 }

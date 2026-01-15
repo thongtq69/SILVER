@@ -1,6 +1,6 @@
 <div class="cart-page" data-section-id="{{ section.id }}">
   <div class="container">
-    <h1 class="cart-title">Giỏ hàng</h1>
+    <h1 class="cart-title">Shopping Cart</h1>
     
     {% if cart.item_count > 0 %}
       <form action="{{ routes.cart_url }}" method="post" id="CartForm" class="cart-form">
@@ -85,33 +85,33 @@
         
         <div class="cart-footer">
           <div class="cart-notes">
-            <label for="CartNote">Ghi chú đơn hàng:</label>
-            <textarea id="CartNote" name="note" placeholder="Ghi chú về đơn hàng...">{{ cart.note }}</textarea>
+            <label for="CartNote">Order notes:</label>
+            <textarea id="CartNote" name="note" placeholder="Add a note to your order...">{{ cart.note }}</textarea>
           </div>
           
           <div class="cart-summary">
             <div class="cart-subtotal">
-              <span>Tạm tính:</span>
+              <span>Subtotal:</span>
               <span class="cart-subtotal-price">{{ cart.total_price | money }}</span>
             </div>
             
-            <p class="cart-shipping-note">Phí vận chuyển sẽ được tính khi thanh toán</p>
+            <p class="cart-shipping-note">Shipping calculated at checkout</p>
             
             <button type="submit" name="update" class="btn btn-secondary btn-update">
-              Cập nhật giỏ hàng
+              Update Cart
             </button>
             
             <button type="submit" name="checkout" class="btn btn-primary btn-checkout">
-              Thanh toán
+              Checkout
             </button>
           </div>
         </div>
       </form>
     {% else %}
       <div class="cart-empty">
-        <p>Giỏ hàng của bạn đang trống</p>
+        <p>Your cart is empty</p>
         <a href="{{ routes.collections_url }}" class="btn btn-primary">
-          Tiếp tục mua sắm
+          Continue Shopping
         </a>
       </div>
     {% endif %}

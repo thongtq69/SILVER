@@ -11,7 +11,7 @@
         
         {% if section.settings.enable_sorting %}
           <div class="collection-sort">
-            <label for="SortBy">Sắp xếp:</label>
+            <label for="SortBy">Sort by:</label>
             <select id="SortBy" class="sort-select" onchange="window.location.href = this.value">
               {% for option in collection.sort_options %}
                 <option value="{{ option.url }}" {% if option.value == collection.sort_by %}selected{% endif %}>
@@ -23,7 +23,7 @@
         {% endif %}
         
         <div class="collection-count">
-          {{ collection.products_count }} sản phẩm
+          {{ collection.products_count }} products
         </div>
       </div>
     {% endif %}
@@ -34,7 +34,7 @@
         {% for product in collection.products %}
           {% render 'product-card', product: product, show_sale_badge: true %}
         {% else %}
-          <p class="no-products">Không có sản phẩm nào trong danh mục này.</p>
+          <p class="no-products">No products found in this collection.</p>
         {% endfor %}
       
         <!-- Pagination -->

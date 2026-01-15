@@ -1,0 +1,154 @@
+<section class="trust-section" data-section-id="{{ section.id }}">
+  <div class="trust-grid">
+    {% for block in section.blocks %}
+      <div class="trust-item" {{ block.shopify_attributes }}>
+        <div class="trust-icon">
+          {% case block.settings.icon %}
+            {% when 'shipping' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"></path>
+                <path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path>
+                <circle cx="7" cy="18" r="2"></circle>
+                <path d="M15 18H9"></path>
+                <circle cx="17" cy="18" r="2"></circle>
+              </svg>
+            {% when 'secure' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            {% when 'return' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
+                <path d="M21 21v-5h-5"></path>
+                <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
+            {% when 'support' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            {% when 'authentic' %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <path d="M9 12l2 2 4-4"></path>
+              </svg>
+            {% else %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+          {% endcase %}
+        </div>
+        <span class="trust-title">{{ block.settings.title }}</span>
+        <span class="trust-text">{{ block.settings.text }}</span>
+      </div>
+    {% endfor %}
+    
+    {% if section.blocks.size == 0 %}
+      <!-- Default trust badges for preview -->
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"></path>
+            <path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path>
+            <circle cx="7" cy="18" r="2"></circle>
+            <path d="M15 18H9"></path>
+            <circle cx="17" cy="18" r="2"></circle>
+          </svg>
+        </div>
+        <span class="trust-title">Free AU Shipping</span>
+        <span class="trust-text">On orders over $100</span>
+      </div>
+      
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <span class="trust-title">Secure Payment</span>
+        <span class="trust-text">SSL encrypted checkout</span>
+      </div>
+      
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
+            <path d="M21 21v-5h-5"></path>
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+          </svg>
+        </div>
+        <span class="trust-title">Easy Returns</span>
+        <span class="trust-text">30-day money back</span>
+      </div>
+      
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <path d="M9 12l2 2 4-4"></path>
+          </svg>
+        </div>
+        <span class="trust-title">100% Authentic</span>
+        <span class="trust-text">Genuine crystals</span>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Badges",
+  "tag": "section",
+  "class": "trust-badges",
+  "max_blocks": 6,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shipping", "label": "Shipping truck" },
+            { "value": "secure", "label": "Lock (secure)" },
+            { "value": "return", "label": "Return arrows" },
+            { "value": "support", "label": "Phone (support)" },
+            { "value": "authentic", "label": "Shield check (authentic)" }
+          ],
+          "default": "shipping"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Free AU Shipping"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description",
+          "default": "On orders over $100"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges",
+      "category": "Trust",
+      "blocks": [
+        { "type": "badge", "settings": { "icon": "shipping", "title": "Free AU Shipping", "text": "On orders over $100" } },
+        { "type": "badge", "settings": { "icon": "secure", "title": "Secure Payment", "text": "SSL encrypted checkout" } },
+        { "type": "badge", "settings": { "icon": "return", "title": "Easy Returns", "text": "30-day money back" } },
+        { "type": "badge", "settings": { "icon": "authentic", "title": "100% Authentic", "text": "Genuine crystals" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
