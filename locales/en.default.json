@@ -1,0 +1,117 @@
+{
+    "general": {
+        "404": {
+            "title": "Page not found",
+            "subtext": "The page you are looking for doesn't exist."
+        },
+        "password_page": {
+            "login_form_heading": "Login",
+            "login_form_password_label": "Password",
+            "login_form_submit": "Login"
+        },
+        "social": {
+            "share_on_facebook": "Share on Facebook",
+            "share_on_twitter": "Share on Twitter",
+            "share_on_pinterest": "Pin on Pinterest"
+        },
+        "search": {
+            "no_results_html": "No results found for \"{{ terms }}\"",
+            "results_html": "{{ count }} results",
+            "placeholder": "Search...",
+            "submit": "Search"
+        },
+        "newsletter_form": {
+            "newsletter_email": "Email",
+            "submit": "Subscribe",
+            "confirmation": "Thank you for subscribing!"
+        }
+    },
+    "accessibility": {
+        "skip_to_content": "Skip to content",
+        "close": "Close",
+        "loading": "Loading..."
+    },
+    "products": {
+        "product": {
+            "add_to_cart": "Add to Cart",
+            "buy_now": "Buy Now",
+            "sold_out": "Sold Out",
+            "unavailable": "Unavailable",
+            "quantity": "Quantity",
+            "view_options": "View Options",
+            "description": "Product Description",
+            "regular_price": "Regular Price",
+            "sale_price": "Sale Price",
+            "vendor": "Brand",
+            "type": "Type",
+            "sku": "SKU"
+        }
+    },
+    "collections": {
+        "general": {
+            "no_matches": "No products match your selection",
+            "items_with_count": {
+                "one": "{{ count }} product",
+                "other": "{{ count }} products"
+            }
+        },
+        "sorting": {
+            "title": "Sort by",
+            "featured": "Featured",
+            "best_selling": "Best Selling",
+            "az": "A-Z",
+            "za": "Z-A",
+            "price_ascending": "Price: Low to High",
+            "price_descending": "Price: High to Low",
+            "date_ascending": "Oldest",
+            "date_descending": "Newest"
+        }
+    },
+    "cart": {
+        "general": {
+            "title": "Shopping Cart",
+            "empty": "Your cart is empty",
+            "continue_shopping": "Continue Shopping",
+            "remove": "Remove",
+            "note": "Order Notes",
+            "subtotal": "Subtotal",
+            "update": "Update Cart",
+            "checkout": "Checkout",
+            "shipping_note": "Shipping calculated at checkout"
+        }
+    },
+    "customer": {
+        "account": {
+            "title": "Account",
+            "orders": "Orders",
+            "addresses": "Addresses"
+        },
+        "login": {
+            "title": "Login",
+            "email": "Email",
+            "password": "Password",
+            "sign_in": "Sign In",
+            "forgot_password": "Forgot password?",
+            "create_account": "Create Account"
+        },
+        "register": {
+            "title": "Create Account",
+            "first_name": "First Name",
+            "last_name": "Last Name",
+            "email": "Email",
+            "password": "Password",
+            "submit": "Register"
+        },
+        "orders": {
+            "title": "Order History",
+            "order_number": "Order Number",
+            "date": "Date",
+            "total": "Total",
+            "status": "Status",
+            "view": "View Details"
+        }
+    },
+    "date_formats": {
+        "month_day_year": "%B %d, %Y"
+    }
+}

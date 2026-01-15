@@ -9,47 +9,51 @@
         "type": "hero-banner",
         "settings": {
           "heading": "Avalane & Co",
-          "subheading": "Khuyến mãi hấp dẫn lên đến 30%",
-          "button_label": "Mua ngay",
+          "subheading": "Exclusive Sale - Up to 30% Off",
+          "button_label": "Shop Now",
           "button_link": "/collections/all"
         }
       },
       "intro_text": {
         "type": "intro-text",
         "settings": {
-          "heading": "Hiện thực giấc mơ của bạn",
-          "text": "Thành lập từ năm 1985 bởi nhà sáng lập Daniel Avalane, chúng tôi đã trở thành thương hiệu trang sức dẫn đầu thế giới - trong đó có Việt Nam, với các sản phẩm pha lê tinh tế hiện thực giấc mơ của bạn. Avalane & Co tự hào là website phân phối trang sức Avalane chính hãng tại Việt Nam."
+          "heading": "Bringing Your Dreams to Life",
+          "text": "Founded in 1985 by Daniel Avalane, we have grown to become a world-leading jewellery brand - now proudly serving Australia. With exquisite crystal designs that bring your dreams to life, Avalane & Co is your trusted destination for authentic luxury jewellery in Australia."
         }
       },
       "featured_categories": {
         "type": "featured-categories",
         "settings": {
-          "heading": "Danh mục nổi bật"
+          "heading": "Luxury Designs"
         },
         "blocks": {
           "category_1": {
             "type": "category",
             "settings": {
-              "title": "Dây chuyền",
-              "link_text": "Xem mẫu"
+              "title": "Necklaces",
+              "link_text": "View Collection"
             }
           },
           "category_2": {
             "type": "category",
             "settings": {
-              "title": "Vòng tay",
-              "link_text": "Xem mẫu"
+              "title": "Bracelets",
+              "link_text": "View Collection"
             }
           },
           "category_3": {
             "type": "category",
             "settings": {
-              "title": "Bông tai",
-              "link_text": "Xem mẫu"
+              "title": "Earrings",
+              "link_text": "View Collection"
             }
           }
         },
-        "block_order": ["category_1", "category_2", "category_3"]
+        "block_order": [
+          "category_1",
+          "category_2",
+          "category_3"
+        ]
       },
       "category_icons": {
         "type": "category-icons",
@@ -58,42 +62,47 @@
           "icon_1": {
             "type": "icon",
             "settings": {
-              "title": "Dây chuyền"
+              "title": "Necklaces"
             }
           },
           "icon_2": {
             "type": "icon",
             "settings": {
-              "title": "Vòng tay"
+              "title": "Bracelets"
             }
           },
           "icon_3": {
             "type": "icon",
             "settings": {
-              "title": "Bông tai"
+              "title": "Earrings"
             }
           },
           "icon_4": {
             "type": "icon",
             "settings": {
-              "title": "Nhẫn"
+              "title": "Rings"
             }
           }
         },
-        "block_order": ["icon_1", "icon_2", "icon_3", "icon_4"]
+        "block_order": [
+          "icon_1",
+          "icon_2",
+          "icon_3",
+          "icon_4"
+        ]
       },
       "featured_products": {
         "type": "featured-products",
         "settings": {
-          "heading": "Sản phẩm nổi bật",
+          "heading": "Featured Products",
           "products_to_show": 8
         }
       },
       "contact_section": {
         "type": "contact-section",
         "settings": {
-          "heading": "LIÊN HỆ VỚI CHÚNG TÔI",
-          "hours": "Hỗ trợ từ 8h - 22h hàng ngày"
+          "heading": "CONTACT US",
+          "hours": "Support available 8am - 10pm AEST daily"
         }
       },
       "footer": {
