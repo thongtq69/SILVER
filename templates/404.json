@@ -1,0 +1,25 @@
+{
+    "sections": {
+        "error_content": {
+            "type": "main-404",
+            "settings": {
+                "heading": "Page Not Found",
+                "subheading": "Oops! The page you're looking for seems to have wandered off.",
+                "button_text": "Back to Home",
+                "show_search": true
+            }
+        },
+        "featured_products": {
+            "type": "featured-products",
+            "settings": {
+                "heading": "You Might Like These",
+                "products_to_show": 4,
+                "columns": "4"
+            }
+        }
+    },
+    "order": [
+        "error_content",
+        "featured_products"
+    ]
+}

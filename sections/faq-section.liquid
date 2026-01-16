@@ -1,0 +1,291 @@
+<section class="faq-section" data-section-id="{{ section.id }}">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <h2 class="section-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.subheading != blank %}
+      <p class="section-subheading">{{ section.settings.subheading }}</p>
+    {% endif %}
+    
+    <div class="faq-container">
+      {% for block in section.blocks %}
+        <div class="faq-item" data-faq-item {{ block.shopify_attributes }}>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-{{ block.id }}">
+            <span class="faq-question-text">{{ block.settings.question }}</span>
+            <span class="faq-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer" id="faq-answer-{{ block.id }}" aria-hidden="true">
+            <div class="faq-answer-content">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    
+    {% if section.settings.show_contact %}
+      <div class="faq-contact">
+        <p>{{ section.settings.contact_text }}</p>
+        <a href="{{ section.settings.contact_link }}" class="btn btn-secondary">
+          {{ section.settings.contact_button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    padding: var(--spacing-xl) 0;
+    background-color: {{ section.settings.background_color }};
+  }
+  
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .faq-item {
+    border-bottom: 1px solid #eee;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .faq-item:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-question:hover {
+    color: #d4a5a5;
+  }
+  
+  .faq-question-text {
+    flex: 1;
+    padding-right: 16px;
+  }
+  
+  .faq-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #f0e6e0;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-icon svg {
+    transition: transform 0.3s ease;
+  }
+  
+  .faq-item.active .faq-icon {
+    background: linear-gradient(135deg, #f0c9cf 0%, #e8b8c0 100%);
+  }
+  
+  .faq-item.active .faq-icon svg {
+    transform: rotate(180deg);
+  }
+  
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  
+  .faq-answer-content {
+    padding: 0 24px 20px;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: #555;
+  }
+  
+  .faq-item.active .faq-answer {
+    max-height: 500px;
+  }
+  
+  .faq-contact {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid #eee;
+  }
+  
+  .faq-contact p {
+    margin-bottom: var(--spacing-md);
+    color: #666;
+  }
+  
+  @media (max-width: 768px) {
+    .faq-question {
+      padding: 16px 20px;
+      font-size: 0.9375rem;
+    }
+    
+    .faq-answer-content {
+      padding: 0 20px 16px;
+      font-size: 0.875rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('[data-faq-item]');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      
+      question.addEventListener('click', function() {
+        const isActive = item.classList.contains('active');
+        
+        // Close all other items (accordion behavior)
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            otherItem.querySelector('.faq-answer').setAttribute('aria-hidden', 'true');
+          }
+        });
+        
+        // Toggle current item
+        item.classList.toggle('active');
+        question.setAttribute('aria-expanded', !isActive);
+        answer.setAttribute('aria-hidden', isActive);
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Section",
+  "tag": "section",
+  "class": "faq-section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Find answers to common questions about our products and services"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fafafa"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact",
+      "label": "Show contact section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "contact_text",
+      "label": "Contact text",
+      "default": "Still have questions? We're here to help!"
+    },
+    {
+      "type": "text",
+      "id": "contact_button_text",
+      "label": "Contact button text",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "contact_link",
+      "label": "Contact link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is your return policy?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We offer a 30-day money back guarantee on all purchases. If you're not completely satisfied with your purchase, simply return it for a full refund.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What is your shipping policy?",
+            "answer": "<p>We offer free standard shipping on all orders over $100 within Australia. Express shipping is available for an additional fee. Orders are typically processed within 1-2 business days.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Are your products authentic?",
+            "answer": "<p>Yes! All our jewellery is 100% authentic and comes with a certificate of authenticity. We source directly from authorized suppliers to ensure genuine quality.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": "<p>Once your order is shipped, you'll receive an email with tracking information. You can also track your order by logging into your account on our website.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer gift wrapping?",
+            "answer": "<p>Yes! All our jewellery comes in elegant gift packaging at no extra cost. For special gift wrapping options, please contact our customer service team.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

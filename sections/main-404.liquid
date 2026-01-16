@@ -1,0 +1,227 @@
+<section class="error-404-section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="error-content">
+      <div class="error-illustration">
+        <div class="error-number">404</div>
+        <div class="error-crystal">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 10L90 40L60 110L30 40L60 10Z" fill="url(#crystal-gradient)" opacity="0.8"/>
+            <path d="M60 10L90 40L60 50L30 40L60 10Z" fill="url(#crystal-top)" opacity="0.9"/>
+            <defs>
+              <linearGradient id="crystal-gradient" x1="30" y1="10" x2="90" y2="110" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f0c9cf"/>
+                <stop offset="1" stop-color="#e8b8c0"/>
+              </linearGradient>
+              <linearGradient id="crystal-top" x1="30" y1="10" x2="90" y2="50" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#fff" stop-opacity="0.6"/>
+                <stop offset="1" stop-color="#f0c9cf"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      
+      <h1 class="error-heading">{{ section.settings.heading }}</h1>
+      <p class="error-subheading">{{ section.settings.subheading }}</p>
+      
+      {% if section.settings.show_search %}
+        <form action="{{ routes.search_url }}" method="get" class="error-search">
+          <input type="hidden" name="type" value="product">
+          <input 
+            type="search" 
+            name="q" 
+            class="error-search-input"
+            placeholder="Search for products..."
+          >
+          <button type="submit" class="error-search-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+        </form>
+      {% endif %}
+      
+      <a href="/" class="btn btn-primary error-home-btn">
+        {{ section.settings.button_text }}
+      </a>
+      
+      <div class="error-links">
+        <p>Or try one of these:</p>
+        <ul>
+          <li><a href="/collections/all">Shop All Products</a></li>
+          <li><a href="/pages/contact">Contact Us</a></li>
+          <li><a href="/pages/faq">FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .error-404-section {
+    padding: var(--spacing-xl) 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .error-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .error-illustration {
+    position: relative;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .error-number {
+    font-size: 10rem;
+    font-weight: 700;
+    color: #f0e6e0;
+    line-height: 1;
+    letter-spacing: -10px;
+  }
+  
+  .error-crystal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: floatCrystal 3s ease-in-out infinite;
+  }
+  
+  @keyframes floatCrystal {
+    0%, 100% { transform: translate(-50%, -50%) rotate(-5deg); }
+    50% { transform: translate(-50%, -60%) rotate(5deg); }
+  }
+  
+  .error-heading {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .error-subheading {
+    font-size: 1.125rem;
+    color: #666;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .error-search {
+    display: flex;
+    max-width: 400px;
+    margin: 0 auto var(--spacing-lg);
+    border-radius: 100px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .error-search-input {
+    flex: 1;
+    padding: 16px 24px;
+    border: 1px solid #eee;
+    border-right: none;
+    border-radius: 100px 0 0 100px;
+    font-size: 1rem;
+  }
+  
+  .error-search-input:focus {
+    outline: none;
+    border-color: #d4a5a5;
+  }
+  
+  .error-search-btn {
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #f0c9cf 0%, #e8b8c0 100%);
+    border: none;
+    border-radius: 0 100px 100px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .error-search-btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .error-home-btn {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .error-links p {
+    color: #999;
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.875rem;
+  }
+  
+  .error-links ul {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+  
+  .error-links a {
+    color: #666;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  
+  .error-links a:hover {
+    color: #d4a5a5;
+  }
+  
+  @media (max-width: 768px) {
+    .error-number {
+      font-size: 6rem;
+      letter-spacing: -5px;
+    }
+    
+    .error-crystal svg {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .error-heading {
+      font-size: 1.5rem;
+    }
+    
+    .error-subheading {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Page Not Found"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Oops! The page you're looking for doesn't exist or has been moved."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Back to Home"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search bar",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

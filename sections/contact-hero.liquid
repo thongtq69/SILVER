@@ -1,0 +1,73 @@
+<section class="contact-hero-section" data-section-id="{{ section.id }}">
+  <div class="contact-hero-bg"></div>
+  <div class="container">
+    <div class="contact-hero-content">
+      <h1 class="contact-hero-heading">{{ section.settings.heading }}</h1>
+      <p class="contact-hero-subheading">{{ section.settings.subheading }}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-hero-section {
+    position: relative;
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+    text-align: center;
+  }
+  
+  .contact-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  
+  .contact-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .contact-hero-heading {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: var(--spacing-sm);
+    color: white;
+  }
+  
+  .contact-hero-subheading {
+    font-size: 1.25rem;
+    opacity: 0.8;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-hero-section {
+      padding: 50px 0;
+    }
+    
+    .contact-hero-heading {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Contact Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get in Touch"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "We'd love to hear from you"
+    }
+  ]
+}
+{% endschema %}

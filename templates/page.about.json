@@ -1,0 +1,64 @@
+{
+    "sections": {
+        "about_hero": {
+            "type": "about-hero",
+            "settings": {
+                "heading": "Our Story",
+                "subheading": "Bringing luxury jewellery to Australia since 1985"
+            }
+        },
+        "about_content": {
+            "type": "about-content",
+            "settings": {}
+        },
+        "about_values": {
+            "type": "about-values",
+            "settings": {
+                "heading": "Our Values"
+            },
+            "blocks": {
+                "v1": {
+                    "type": "value",
+                    "settings": {
+                        "icon": "✨",
+                        "title": "Quality",
+                        "text": "We source only the finest crystals and materials for our jewellery."
+                    }
+                },
+                "v2": {
+                    "type": "value",
+                    "settings": {
+                        "icon": "💎",
+                        "title": "Authenticity",
+                        "text": "Every piece is 100% genuine with certificates of authenticity."
+                    }
+                },
+                "v3": {
+                    "type": "value",
+                    "settings": {
+                        "icon": "🤝",
+                        "title": "Service",
+                        "text": "Dedicated Australian customer support, always here to help."
+                    }
+                }
+            },
+            "block_order": [
+                "v1",
+                "v2",
+                "v3"
+            ]
+        },
+        "testimonials": {
+            "type": "testimonials",
+            "settings": {
+                "heading": "What Our Customers Say"
+            }
+        }
+    },
+    "order": [
+        "about_hero",
+        "about_content",
+        "about_values",
+        "testimonials"
+    ]
+}

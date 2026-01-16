@@ -1,0 +1,512 @@
+<!-- Search Modal -->
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="search-modal-overlay" data-search-close></div>
+  <div class="search-modal-content">
+    <div class="search-header">
+      <form action="{{ routes.search_url }}" method="get" class="search-form" role="search">
+        <input type="hidden" name="type" value="product">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input 
+            type="search" 
+            name="q" 
+            class="search-input"
+            placeholder="Search for jewellery..."
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            aria-label="Search"
+          >
+          <button type="button" class="search-clear" aria-label="Clear search" style="display: none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m15 9-6 6"></path>
+              <path d="m9 9 6 6"></path>
+            </svg>
+          </button>
+        </div>
+      </form>
+      <button class="search-close-btn" data-search-close aria-label="Close search">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="search-body">
+      <!-- Popular Searches -->
+      <div class="search-suggestions" data-search-suggestions>
+        <h3 class="search-section-title">Popular Searches</h3>
+        <ul class="search-suggestion-list">
+          {% for item in section.settings.popular_searches | split: ',' %}
+            <li>
+              <a href="{{ routes.search_url }}?type=product&q={{ item | strip | url_encode }}" class="search-suggestion-link">
+                {{ item | strip }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <!-- Categories -->
+      <div class="search-categories">
+        <h3 class="search-section-title">Browse Categories</h3>
+        <div class="search-category-grid">
+          {% for block in section.blocks %}
+            {% if block.type == 'category' %}
+              <a href="{{ block.settings.link }}" class="search-category-card" {{ block.shopify_attributes }}>
+                <span class="search-category-icon">{{ block.settings.icon }}</span>
+                <span class="search-category-name">{{ block.settings.title }}</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      
+      <!-- Search Results (dynamic) -->
+      <div class="search-results" style="display: none;">
+        <h3 class="search-section-title">Results</h3>
+        <div class="search-results-grid"></div>
+        <a href="#" class="search-view-all btn btn-secondary">View All Results</a>
+      </div>
+      
+      <!-- Empty State -->
+      <div class="search-empty" style="display: none;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <p>No results found for "<span class="search-query"></span>"</p>
+        <p class="search-empty-hint">Try a different search term or browse our categories</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .search-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .search-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .search-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+  }
+  
+  .search-modal-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    max-height: 70vh;
+    overflow-y: auto;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+  }
+  
+  .search-modal.active .search-modal-content {
+    transform: translateY(0);
+  }
+  
+  .search-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 32px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .search-form {
+    flex: 1;
+  }
+  
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 0 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .search-input-wrapper:focus-within {
+    background: #fff;
+    box-shadow: 0 0 0 2px #d4a5a5;
+  }
+  
+  .search-icon {
+    color: #999;
+    flex-shrink: 0;
+  }
+  
+  .search-input {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    background: none;
+    font-size: 1.125rem;
+    color: #000;
+  }
+  
+  .search-input:focus {
+    outline: none;
+  }
+  
+  .search-input::placeholder {
+    color: #999;
+  }
+  
+  .search-clear {
+    padding: 8px;
+    color: #999;
+    transition: color 0.3s ease;
+  }
+  
+  .search-clear:hover {
+    color: #000;
+  }
+  
+  .search-close-btn {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  
+  .search-close-btn:hover {
+    background: #eee;
+    transform: rotate(90deg);
+  }
+  
+  .search-body {
+    padding: 24px 32px 32px;
+  }
+  
+  .search-section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    margin-bottom: 16px;
+  }
+  
+  .search-suggestions {
+    margin-bottom: 32px;
+  }
+  
+  .search-suggestion-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .search-suggestion-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #f5f5f5;
+    border-radius: 100px;
+    font-size: 0.875rem;
+    color: #333;
+    transition: all 0.3s ease;
+  }
+  
+  .search-suggestion-link:hover {
+    background: linear-gradient(135deg, #f0c9cf 0%, #e8b8c0 100%);
+    color: #000;
+    transform: translateY(-2px);
+  }
+  
+  .search-category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  
+  .search-category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 16px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .search-category-card:hover {
+    background: #fff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+  }
+  
+  .search-category-icon {
+    font-size: 2rem;
+  }
+  
+  .search-category-name {
+    font-weight: 500;
+    font-size: 0.9375rem;
+  }
+  
+  .search-results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  
+  .search-result-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .search-result-item:hover {
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-result-image {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #eee;
+  }
+  
+  .search-result-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .search-result-info {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .search-result-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .search-result-price {
+    font-size: 0.8125rem;
+    color: #666;
+  }
+  
+  .search-empty {
+    text-align: center;
+    padding: 48px 20px;
+    color: #666;
+  }
+  
+  .search-empty svg {
+    margin-bottom: 16px;
+  }
+  
+  .search-empty-hint {
+    font-size: 0.875rem;
+    color: #999;
+  }
+  
+  .search-view-all {
+    display: block;
+    text-align: center;
+  }
+  
+  @media (max-width: 1024px) {
+    .search-category-grid,
+    .search-results-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .search-header {
+      padding: 16px;
+    }
+    
+    .search-body {
+      padding: 20px 16px;
+    }
+    
+    .search-category-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .search-results-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .search-input {
+      font-size: 1rem;
+      padding: 12px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchModal = document.getElementById('search-modal');
+    const searchInput = searchModal?.querySelector('.search-input');
+    const searchClear = searchModal?.querySelector('.search-clear');
+    const searchTriggers = document.querySelectorAll('.search-toggle, [data-search-open]');
+    const searchCloseButtons = searchModal?.querySelectorAll('[data-search-close]');
+    
+    if (!searchModal || !searchInput) return;
+    
+    // Open search modal
+    searchTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        searchModal.classList.add('active');
+        searchModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus input after animation
+        setTimeout(() => searchInput.focus(), 100);
+      });
+    });
+    
+    // Close search modal
+    function closeSearch() {
+      searchModal.classList.remove('active');
+      searchModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      searchInput.value = '';
+      searchClear.style.display = 'none';
+    }
+    
+    searchCloseButtons.forEach(btn => {
+      btn.addEventListener('click', closeSearch);
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+        closeSearch();
+      }
+    });
+    
+    // Show/hide clear button
+    searchInput.addEventListener('input', function() {
+      searchClear.style.display = this.value ? 'block' : 'none';
+    });
+    
+    // Clear input
+    searchClear.addEventListener('click', function() {
+      searchInput.value = '';
+      searchInput.focus();
+      this.style.display = 'none';
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Search Modal",
+  "class": "search-modal-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "popular_searches",
+      "label": "Popular searches (comma separated)",
+      "default": "Necklaces, Bracelets, Swan Collection, Crystal, Rose Gold, Gift Sets"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "💎"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Necklaces"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Search Modal",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "icon": "📿",
+            "title": "Necklaces"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "icon": "💫",
+            "title": "Bracelets"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "icon": "✨",
+            "title": "Earrings"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "icon": "💍",
+            "title": "Rings"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

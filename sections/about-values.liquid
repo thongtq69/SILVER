@@ -1,0 +1,143 @@
+<section class="about-values-section" data-section-id="{{ section.id }}">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <h2 class="section-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    <div class="values-grid">
+      {% for block in section.blocks %}
+        <div class="value-card" {{ block.shopify_attributes }}>
+          <div class="value-icon">{{ block.settings.icon }}</div>
+          <h3 class="value-title">{{ block.settings.title }}</h3>
+          <p class="value-text">{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-values-section {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, #f8f5f0 0%, #f5f0e8 100%);
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+  
+  .value-card {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .value-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  }
+  
+  .value-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .value-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .value-text {
+    font-size: 0.9375rem;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .values-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+    
+    .value-card {
+      padding: var(--spacing-md);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Values",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Values"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "✨"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Quality"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "We source only the finest crystals and materials for our jewellery."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Values",
+      "blocks": [
+        {
+          "type": "value",
+          "settings": {
+            "icon": "✨",
+            "title": "Quality",
+            "text": "We source only the finest crystals and materials for our jewellery."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "💎",
+            "title": "Authenticity",
+            "text": "Every piece is 100% genuine with certificates of authenticity."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "🤝",
+            "title": "Service",
+            "text": "Dedicated Australian customer support, always here to help."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

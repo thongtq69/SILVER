@@ -1,0 +1,399 @@
+<section class="contact-form-section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h2 class="contact-info-heading">{{ section.settings.info_heading }}</h2>
+        <p class="contact-info-text">{{ section.settings.info_text }}</p>
+        
+        <div class="contact-details">
+          {% if section.settings.email != blank %}
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="contact-detail-content">
+                <span class="contact-detail-label">Email</span>
+                <a href="mailto:{{ section.settings.email }}" class="contact-detail-value">
+                  {{ section.settings.email }}
+                </a>
+              </div>
+            </div>
+          {% endif %}
+          
+          {% if section.settings.phone != blank %}
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="contact-detail-content">
+                <span class="contact-detail-label">Phone</span>
+                <a href="tel:{{ section.settings.phone }}" class="contact-detail-value">
+                  {{ section.settings.phone }}
+                </a>
+              </div>
+            </div>
+          {% endif %}
+          
+          {% if section.settings.hours != blank %}
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="contact-detail-content">
+                <span class="contact-detail-label">Business Hours</span>
+                <span class="contact-detail-value">{{ section.settings.hours }}</span>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+        
+        <!-- Social Links -->
+        <div class="contact-social">
+          <span class="contact-social-label">Follow Us</span>
+          <div class="contact-social-links">
+            {% if settings.social_facebook != blank %}
+              <a href="{{ settings.social_facebook }}" target="_blank" class="contact-social-link" aria-label="Facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+            {% endif %}
+            {% if settings.social_instagram != blank %}
+              <a href="{{ settings.social_instagram }}" target="_blank" class="contact-social-link" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Contact Form -->
+      <div class="contact-form-wrapper">
+        <h2 class="contact-form-heading">{{ section.settings.form_heading }}</h2>
+        
+        {% form 'contact', class: 'contact-form' %}
+          {% if form.posted_successfully? %}
+            <div class="contact-success">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <h3>Thank you for your message!</h3>
+              <p>We'll get back to you within 24 hours.</p>
+            </div>
+          {% else %}
+            {% if form.errors %}
+              <div class="contact-errors">
+                {{ form.errors | default_errors }}
+              </div>
+            {% endif %}
+            
+            <div class="form-group">
+              <label for="contact-name">Name *</label>
+              <input type="text" id="contact-name" name="contact[name]" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-email">Email *</label>
+              <input type="email" id="contact-email" name="contact[email]" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-phone">Phone</label>
+              <input type="tel" id="contact-phone" name="contact[phone]">
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-subject">Subject</label>
+              <select id="contact-subject" name="contact[subject]">
+                <option value="">Select a topic...</option>
+                <option value="Order Inquiry">Order Inquiry</option>
+                <option value="Product Question">Product Question</option>
+                <option value="Shipping">Shipping</option>
+                <option value="Returns">Returns</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-message">Message *</label>
+              <textarea id="contact-message" name="contact[body]" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary contact-submit">
+              Send Message
+            </button>
+          {% endif %}
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-form-section {
+    padding: var(--spacing-xl) 0;
+    background: #fafafa;
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+  }
+  
+  .contact-info {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  .contact-info-heading {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .contact-info-text {
+    color: #666;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+  }
+  
+  .contact-details {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .contact-detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .contact-detail-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0c9cf 0%, #e8b8c0 100%);
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+  
+  .contact-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .contact-detail-label {
+    font-size: 0.8125rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .contact-detail-value {
+    font-weight: 500;
+    color: #000;
+  }
+  
+  .contact-detail-value:hover {
+    color: #d4a5a5;
+  }
+  
+  .contact-social {
+    padding-top: var(--spacing-md);
+    border-top: 1px solid #eee;
+  }
+  
+  .contact-social-label {
+    display: block;
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .contact-social-links {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .contact-social-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    border-radius: 50%;
+    color: #333;
+    transition: all 0.3s ease;
+  }
+  
+  .contact-social-link:hover {
+    background: linear-gradient(135deg, #f0c9cf 0%, #e8b8c0 100%);
+    transform: translateY(-3px);
+  }
+  
+  .contact-form-wrapper {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  .contact-form-heading {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .form-group {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #d4a5a5;
+    box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.1);
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  .contact-submit {
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
+  }
+  
+  .contact-success {
+    text-align: center;
+    padding: var(--spacing-lg);
+  }
+  
+  .contact-success svg {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .contact-success h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .contact-success p {
+    color: #666;
+  }
+  
+  .contact-errors {
+    padding: 16px;
+    background: #fff0f0;
+    border: 1px solid #ffcccc;
+    border-radius: 8px;
+    margin-bottom: var(--spacing-md);
+    color: #cc0000;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .contact-info,
+    .contact-form-wrapper {
+      padding: var(--spacing-md);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Contact Form Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Contact Info"
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Info heading",
+      "default": "Contact Information"
+    },
+    {
+      "type": "textarea",
+      "id": "info_text",
+      "label": "Info text",
+      "default": "Have questions? We're here to help! Reach out to us through any of the methods below."
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "support@avalane.com.au"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "+61 2 1234 5678"
+    },
+    {
+      "type": "text",
+      "id": "hours",
+      "label": "Business hours",
+      "default": "8am - 10pm AEST, 7 days"
+    },
+    {
+      "type": "header",
+      "content": "Contact Form"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Send Us a Message"
+    }
+  ]
+}
+{% endschema %}
